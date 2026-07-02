@@ -117,7 +117,7 @@ const features = [
     title: "Vision Stratégique",
     description:
       "Nous analysons votre marché et définissons une stratégie digitale claire et efficace pour atteindre vos objectifs business.",
-    bg: "/images/slider/bg1.jpg",
+    bg: "/features/feature1.jpg",
     overlay: "bg-brand/85",
   },
   {
@@ -125,7 +125,7 @@ const features = [
     title: "Innovation",
     description:
       "Nous intégrons les dernières technologies pour créer des solutions innovantes qui vous démarquent de la concurrence.",
-    bg: "/images/slider/bg3.jpg",
+    bg: "/features/feature2.jpg",
     overlay: "bg-ink/85",
   },
   {
@@ -133,7 +133,7 @@ const features = [
     title: "Livraison à temps",
     description:
       "Nous nous engageons à livrer vos projets dans les délais impartis, garantissant ainsi la satisfaction de nos clients.",
-    bg: "/images/slider/bg2.jpg",
+    bg: "/features/feature3.jpg",
     overlay: "bg-brand-dark/85",
   },
 ];
@@ -223,7 +223,7 @@ export default function Home() {
         {features.map((feature) => (
           <div
             key={feature.title}
-            className="group relative flex min-h-[330px] items-center justify-center overflow-hidden"
+            className="group relative flex h-116 items-center justify-center overflow-hidden"
           >
             <Image
               src={feature.bg}
@@ -248,11 +248,17 @@ export default function Home() {
 
       {/* Services */}
       <section id="services" className="relative overflow-hidden bg-zinc-50">
+        <div className="left-0 absolute">
+          <img src="/pattern/pattern_arrow.png" alt="" />
+        </div>
+        <div className="absolute right-0 bottom-0">
+          <img src="/pattern/pattern_box.png" alt="" />
+        </div>
         <div
           className="pointer-events-none absolute -left-32 top-20 h-80 w-80 rounded-full bg-brand/5 blur-3xl"
         />
-        <div className="relative mx-auto max-w-[1440px] px-6 py-32 lg:px-12">
-          <SectionTitle eyebrow="Nos Services" title="Que faisons-nous ?" />
+        <div className="relative mx-auto max-w-360 px-6 py-30 lg:px-12">
+          <SectionTitle eyebrow="Nos Services" title="Que Faisons-Nous ?" />
           <div className="grid gap-10 lg:grid-cols-3">
             {services.map((service, i) => (
               <Reveal key={service.title} delay={i * 130}>
@@ -265,10 +271,10 @@ export default function Home() {
                       sizes="(max-width: 1024px) 100vw, 33vw"
                       className="object-cover transition-transform duration-700 group-hover:scale-110"
                     />
-                    <div className="absolute inset-0 bg-gradient-to-t from-ink/70 via-transparent to-transparent opacity-60 transition-opacity duration-500 group-hover:opacity-90" />
-                    <span className="absolute -bottom-9 left-8 flex h-20 w-20 items-center justify-center rounded-2xl bg-brand text-white shadow-xl shadow-brand/40 transition-all duration-500 group-hover:scale-110 group-hover:bg-accent">
+                    <div className="absolute inset-0 bg-linear-to-t from-ink/70 via-transparent to-transparent opacity-60 transition-opacity duration-500 group-hover:opacity-90" />
+                    {/* <span className="absolute -bottom-9 left-8 flex h-20 w-20 items-center justify-center rounded-2xl bg-brand text-white shadow-xl shadow-brand/40 transition-all duration-500 group-hover:scale-110 group-hover:bg-accent">
                       {service.icon}
-                    </span>
+                    </span> */}
                   </div>
                   <div className="flex flex-1 flex-col p-9 pt-14">
                     <h3 className="mb-4 text-2xl font-bold transition-colors duration-300 group-hover:text-brand">
@@ -300,11 +306,8 @@ export default function Home() {
       </section>
 
       {/* Facts — 2 ans d'expérience */}
-      <section className="relative z-10 -mt-10 overflow-hidden rounded-t-[3rem] bg-white shadow-[0_-25px_60px_-15px_rgba(27,36,51,0.12)]">
-        <div
-          className="pointer-events-none absolute -right-24 top-1/2 h-96 w-96 -translate-y-1/2 rounded-full bg-brand/5 blur-3xl"
-        />
-        <div className="relative mx-auto grid max-w-[1440px] items-center gap-16 px-6 py-28 lg:grid-cols-2 lg:px-12">
+      <section className="mt-10 bg-white">
+        <div className=" mx-auto grid items-center gap-16 px-6 py-28 lg:grid-cols-2 lg:px-12">
           <Reveal>
             <div className="relative">
               <span className="absolute -left-5 -top-5 h-28 w-28 rounded-2xl border-4 border-accent/40" />
@@ -365,7 +368,7 @@ export default function Home() {
 
       {/* Culture & philosophie — parallax */}
       <section
-        className="relative flex min-h-[660px] items-center overflow-hidden bg-cover bg-fixed bg-center"
+        className="relative flex min-h-165 items-center overflow-hidden bg-cover bg-fixed bg-center"
         style={{ backgroundImage: "url(/images/notre_philosophie.jpg)" }}
       >
         <div className="absolute inset-0 bg-gradient-to-r from-ink via-ink/80 to-ink/30" />
@@ -488,7 +491,7 @@ export default function Home() {
 
       {/* News / Projets */}
       <section id="news" className="bg-white">
-        <div className="mx-auto max-w-[1440px] px-6 py-32 lg:px-12">
+        <div className="mx-auto max-w-360 px-6 py-32 lg:px-12">
           <SectionTitle eyebrow="Nouveauté" title="Projets réalisés" />
           <div className="grid gap-10 lg:grid-cols-2">
             {/* Featured project */}
@@ -567,19 +570,15 @@ export default function Home() {
       </section>
 
       {/* Contact — image en arrière-plan plein écran */}
-      <section id="contact" className="relative overflow-hidden py-32 text-white">
-        <Image
-          src="/images/contact.jpg"
-          alt="Contactez Afroza Editor"
-          fill
-          sizes="100vw"
-          className="object-cover object-center"
-        />
-        <div className="absolute inset-0 bg-gradient-to-r from-ink/95 via-brand-dark/80 to-brand/40" />
-        <div className="float-anim pointer-events-none absolute -bottom-32 right-0 h-96 w-96 rounded-full bg-accent/25 blur-3xl" />
+      <section id="contact" className="relative flex h-[500px] items-center bg-cover bg-fixed bg-center my-30"
+        style={{ backgroundImage: "url(/images/notre_philosophie.jpg)" }}>
 
-        <div className="relative mx-auto grid max-w-[1440px] items-center gap-16 px-6 lg:grid-cols-2 lg:px-12">
-          <Reveal>
+        <div className="absolute inset-0 bg-brand/50"  />
+
+        
+
+        <div className="absolute h-166.75 w-128.75 items-center flex -top-20.5 z-20  left-70">
+          {/* <Reveal>
             <p className="text-sm font-semibold uppercase tracking-[0.25em] text-accent">
               Toujours disponibles
             </p>
@@ -605,52 +604,52 @@ export default function Home() {
                 </li>
               ))}
             </ul>
-          </Reveal>
+          </Reveal> */}
 
-          <Reveal delay={150}>
+          {/* <Reveal delay={150}> */}
             <form
               action="#"
-              className="rounded-[2rem] bg-white/95 p-10 shadow-2xl backdrop-blur-md sm:p-12"
+              className=" bg-[#1F1F1F] h-full px-10 py-20 w-full"
             >
-              <h3 className="text-2xl font-bold text-ink">
-                Envoyez-nous un message
+              <h3 className="text-sm text-white ">
+                We are always ready
               </h3>
-              <p className="mt-2 text-sm text-muted">
-                Remplissez le formulaire, nous revenons vers vous sous 24h.
+              <p className="mt-2 text-3xl font-bold text-white">
+                Request a call back
               </p>
               <div className="mt-8 grid gap-4 sm:grid-cols-2">
                 <input
-                  className="rounded-xl border border-zinc-200 bg-zinc-50 px-4 py-4 text-sm text-ink outline-none transition-all focus:border-brand focus:bg-white focus:ring-2 focus:ring-brand/20"
+                  className="border-b py-4 border-white text-white outline-none focus:border-brand focus:ring-brand/20"
                   placeholder="Nom complet"
                   required
                 />
                 <input
-                  className="rounded-xl border border-zinc-200 bg-zinc-50 px-4 py-4 text-sm text-ink outline-none transition-all focus:border-brand focus:bg-white focus:ring-2 focus:ring-brand/20"
+                  className="border-b py-4 border-white text-white outline-none focus:border-brand focus:ring-brand/20"
                   placeholder="Adresse e-mail"
                   type="email"
                   required
                 />
               </div>
               <input
-                className="mt-4 w-full rounded-xl border border-zinc-200 bg-zinc-50 px-4 py-4 text-sm text-ink outline-none transition-all focus:border-brand focus:bg-white focus:ring-2 focus:ring-brand/20"
+                className="mt-4 w-full border-b py-4 border-white text-white outline-none focus:border-brand focus:ring-brand/20"
                 placeholder="Sujet"
               />
               <textarea
-                className="mt-4 w-full rounded-xl border border-zinc-200 bg-zinc-50 px-4 py-4 text-sm text-ink outline-none transition-all focus:border-brand focus:bg-white focus:ring-2 focus:ring-brand/20"
+                className="mt-4 w-full border-b py-4 border-white text-white outline-none focus:border-brand focus:ring-brand/20"
                 placeholder="Votre message"
                 rows={6}
               />
-              <button
+              <div className="flex justify-end mt-4">
+                <button
                 type="submit"
-                className="mt-6 inline-flex w-full items-center justify-center gap-2 rounded-full bg-accent px-6 py-4 text-base font-semibold text-white shadow-lg shadow-accent/30 transition-all hover:-translate-y-0.5 hover:bg-accent-dark"
+                className="rounded-full bg-brand text-white p-4 font-bold "
               >
                 Envoyer le message
-                <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
-                  <path d="M3 11l18-8-8 18-2.5-7.5z" />
-                </svg>
               </button>
+              </div>
+              
             </form>
-          </Reveal>
+          {/* </Reveal> */}
         </div>
       </section>
 
@@ -682,7 +681,7 @@ export default function Home() {
       </section>
 
       {/* Footer main — team photo as full background */}
-      <footer className="relative overflow-hidden bg-ink text-white">
+      <footer className="relative bg-ink text-white pt-20">
         <Image
           src="/images/footer-bg.jpg"
           alt="L'équipe Afroza Editor"
@@ -690,11 +689,11 @@ export default function Home() {
           sizes="100vw"
           className="object-cover object-center"
         />
-        <div className="absolute inset-0 bg-gradient-to-b from-ink/70 via-ink/72 to-ink/88" />
+        <div className="absolute inset-0 bg-[#092025]/90" />
 
         {/* Head office bar — semi-transparent so the background shows through */}
-        <div className="relative border-b border-white/15 bg-brand/30 backdrop-blur-md">
-          <div className="mx-auto grid max-w-7xl gap-px px-6 py-10 sm:grid-cols-3">
+        <div className="absolute flex items-center justify-center left-0.5 -top-17 w-full ">
+          <div className="mx-auto grid gap-px px-6 py-10 sm:grid-cols-3 bg-[#0F6562] ">
             {[
               { icon: <IconPin />, title: "Head Office", text: "CRADAT, Yaoundé — Cameroun" },
               { icon: <IconPhone />, title: "Call Us", text: "+237 659 974 106" },
@@ -717,15 +716,15 @@ export default function Home() {
 
         <div className="relative mx-auto grid max-w-7xl gap-10 px-6 py-16 md:grid-cols-3">
           <Reveal>
-            <span className="inline-block rounded-xl bg-white p-3 shadow-lg">
+            {/* <span className=" p-3 shadow-lg"> */}
               <Image
-                src="/images/ending_logo.png"
+                src="/images/logo.png"
                 alt="Afroza Editor"
                 width={150}
                 height={70}
                 className="h-12 w-auto"
               />
-            </span>
+            {/* </span> */}
             <p className="mt-5 text-sm leading-relaxed text-white/70">
               Conception et développement de systèmes numériques innovants pour
               répondre à vos besoins spécifiques. Nous transformons vos idées en

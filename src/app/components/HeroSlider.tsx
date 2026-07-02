@@ -15,8 +15,8 @@ const slides: Slide[] = [
   {
     image: "/images/slider/bg1.jpg",
     align: "left",
-    title: "Innovation et expertise",
-    subtitle: "Nous bâtissons le Cameroun numérique de demain",
+    title: "Nous battissons cameroun numerique de demain",
+    subtitle: "Innovation & Expertise",
     description: "Solutions informatiques performantes pour votre entreprise.",
   },
   {
@@ -82,7 +82,7 @@ export default function HeroSlider() {
           <div className="absolute inset-0 bg-gradient-to-b from-black/65 via-black/45 to-black/65" />
 
           <div
-            className={`relative z-10 mx-auto flex h-full max-w-7xl items-center px-6 pt-24 ${
+            className={`relative z-10 mx-auto flex h-full max-w-6xl items-center pt-24 ${
               index === current ? "slide-active" : ""
             }`}
           >
@@ -90,12 +90,11 @@ export default function HeroSlider() {
               className={`slide-anim flex w-full flex-col gap-6 ${alignClasses[slide.align]}`}
             >
               {slide.subtitle && slide.title && (
-                <p className="flex items-center gap-3 text-lg font-medium uppercase tracking-[0.25em] text-accent sm:text-xl">
-                  <span className="h-px w-10 bg-accent" />
+                <p className="flex items-center gap-3 text-lg font-medium uppercase tracking-[0.25em] text-white sm:text-xl">
                   {slide.subtitle}
                 </p>
               )}
-              <h2 className="max-w-3xl text-4xl font-extrabold uppercase leading-[1.05] text-white drop-shadow-lg sm:text-6xl lg:text-7xl">
+              <h2 className="max-w-4xl text-4xl font-extrabold uppercase leading-[1.05] text-white drop-shadow-lg sm:text-6xl lg:text-7xl">
                 {slide.title ?? slide.subtitle}
               </h2>
               {slide.description && (

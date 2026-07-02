@@ -1,17 +1,19 @@
 "use client";
 
 import Image from "next/image";
+import Link from "next/link";
+import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
 
 const navItems: { label: string; href: string; dropdown?: string[] }[] = [
-  { label: "Maison", href: "#" },
-  { label: "Pages", href: "#about", dropdown: ["Notre équipe", "Tarifs", "FAQ"] },
+  { label: "Acceuil", href: "/" },
+  { label: "À propos", href: "#about", dropdown: ["Notre équipe", "Tarifs", "FAQ"] },
   {
     label: "Nos Services",
     href: "#services",
     dropdown: ["Tous les services", "Détail d'un service"],
   },
-  { label: "Caractéristiques", href: "#about" },
+  { label: "Réalisations", href: "#about" },
   { label: "Nouvelles", href: "#news" },
   { label: "Contact", href: "#contact" },
 ];
@@ -56,33 +58,43 @@ function SearchIcon() {
 const socials = ["Facebook", "Twitter", "Google+", "LinkedIn", "Instagram"];
 
 function NavList({ dark }: { dark: boolean }) {
-  const linkColor = dark ? "text-ink hover:text-brand" : "text-white/90 hover:text-white";
+  const pathname = usePathname()
+  const linkColor = dark ? "text-ink hover:text-brand" : "text-white/90";
   return (
     <nav className="hidden items-center gap-8 lg:flex">
-      {navItems.map((item) => (
-        <div key={item.label} className="group relative">
-          <a
-            href={item.href}
-            className={`flex items-center text-sm font-semibold uppercase tracking-wide transition-colors ${linkColor}`}
-          >
-            {item.label}
-            {item.dropdown && <CaretIcon />}
-          </a>
-          {item.dropdown && (
-            <div className="invisible absolute left-0 top-full z-50 min-w-48 translate-y-3 rounded-xl bg-white py-2 opacity-0 shadow-2xl ring-1 ring-black/5 transition-all duration-300 group-hover:visible group-hover:translate-y-2 group-hover:opacity-100">
-              {item.dropdown.map((sub) => (
-                <a
-                  key={sub}
-                  href={item.href}
-                  className="block px-4 py-2 text-sm text-zinc-700 transition-colors hover:bg-brand/5 hover:text-brand"
-                >
-                  {sub}
-                </a>
-              ))}
-            </div>
-          )}
-        </div>
-      ))}
+      {navItems.map(item => {
+        const isActive = pathname === item.href
+        console.log(isActive)
+        return (
+        <div key={item.label} className="h-full">
+                  <Link
+                    href={item.href}
+                    className={`flex h-full items-center text-sm font-semibold uppercase tracking-wide transition-colors border-b-2  ${
+                      isActive ? 'border-brand' : 'border-transparent hover:border-brand'
+                    }
+                    ${linkColor}
+                    `}
+                  >
+                    {item.label}
+                    {item.dropdown && <CaretIcon />}
+                  </Link>
+                  {item.dropdown &&  (
+                    <div className="invisible absolute left-0 top-full z-50 min-w-48 translate-y-3 rounded-xl bg-white py-2 opacity-0 shadow-2xl ring-1 ring-black/5 transition-all duration-300 group-hover:visible group-hover:translate-y-2 group-hover:opacity-100">
+                      {item.dropdown.map((sub) => (
+                        <a
+                          key={sub}
+                          href={item.href}
+                          className="block px-4 py-2 text-sm text-zinc-700 transition-colors hover:bg-brand/5 hover:text-brand"
+                        >
+                          {sub}
+                        </a>
+                      ))}
+                    </div>
+                  )}
+                </div>
+        )
+      
+      })}
       <button type="button" aria-label="Rechercher" className={`transition-colors ${linkColor}`}>
         <SearchIcon />
       </button>
@@ -104,71 +116,60 @@ export default function SiteHeader() {
   return (
     <>
       {/* Transparent header sitting over the hero */}
-      <div className="absolute inset-x-0 top-0 z-40">
-        <div className="hidden border-b border-white/10 bg-black/25 backdrop-blur-sm lg:block">
-          <div className="mx-auto flex max-w-7xl items-center justify-between px-6 py-2.5 text-xs text-white/85">
+      <div className="absolute inset-x-0 top-0 z-40 justify-center items-center">
+        <div className="items-center flex justify-center">
+          <div className="py-3 flex justify-between max-w-6xl w-full">
+          <div className="text-white">
             <ul className="flex items-center gap-7">
               <li className="flex items-center gap-2"><span className="text-accent"><PhoneIcon /></span>+237 659 974 106</li>
               <li className="flex items-center gap-2"><span className="text-accent"><MailIcon /></span>Afrozaeditor@yahoo.com</li>
               <li className="flex items-center gap-2"><span className="text-accent"><PinIcon /></span>CRADAT, Yaoundé — Cameroun</li>
             </ul>
-            <div className="flex items-center gap-2">
-              {socials.map((s) => (
-                <a
-                  key={s}
-                  href="#"
-                  aria-label={s}
-                  title={s}
-                  className="flex h-7 w-7 items-center justify-center rounded-full bg-white/10 text-[10px] font-bold text-white/80 transition-all hover:scale-110 hover:bg-brand hover:text-white"
-                >
-                  {s[0]}
-                </a>
-              ))}
-            </div>
+          </div>
+          <div className="flex items-center gap-2">
+            {socials.map((s) => (
+              <a
+                key={s}
+                href="#"
+                aria-label={s}
+                title={s}
+                className="flex h-7 w-7 items-center justify-center rounded-full bg-white/10 text-[10px] font-bold text-white/80 transition-all hover:scale-110 hover:bg-brand hover:text-white"
+              >
+                {s[0]}
+              </a>
+            ))}
           </div>
         </div>
+        </div>
+      
 
-        <header className="border-b border-white/10">
-          <div className="mx-auto flex max-w-7xl items-center justify-between px-6 py-4">
-            <a href="#" aria-label="Afroza Editor — Accueil">
-              <Image src="/images/logo.png" alt="Afroza Editor" width={150} height={150} priority className="h-16 w-auto drop-shadow-lg" />
-            </a>
-            <NavList dark={false} />
-            <button
-              type="button"
-              aria-label="Menu"
-              onClick={() => setMobileOpen((o) => !o)}
-              className="text-white lg:hidden"
-            >
-              <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                <path d="M4 6h16M4 12h16M4 18h16" />
-              </svg>
-            </button>
-          </div>
+        <header className="items-center flex justify-center">
+          
+          <div className=" bg-black/50 flex justify-between max-w-6xl w-full">
+          {/* <div className="absolute inset-y-0 left-1/2 right-0 bg-black/50"></div> */}
+            <div className="pl-7.5 py-1.25">
+              <a href="#" aria-label="Afroza Editor — Accueil" >
+                <Image src="/images/logo.png" alt="Afroza Editor" width={80} height={80} />
+              </a>
+            </div>
+              <NavList dark={false}  />
+              </div>
         </header>
       </div>
 
       {/* Solid sticky navbar that slides in smoothly on scroll */}
       <div
-        className={`fixed inset-x-0 top-0 z-50 bg-white shadow-lg transition-transform duration-500 ease-out ${
+        className={`fixed inset-x-0 top-0 z-50 bg-black/50 shadow-lg transition-transform duration-500 ease-out h-20 ${
           scrolled ? "translate-y-0" : "-translate-y-full"
         }`}
       >
-        <div className="mx-auto flex max-w-7xl items-center justify-between px-6 py-2.5">
-          <a href="#" aria-label="Afroza Editor — Accueil">
-            <Image src="/images/logo.png" alt="Afroza Editor" width={120} height={120} className="h-12 w-auto" />
-          </a>
-          <NavList dark />
-          <button
-            type="button"
-            aria-label="Menu"
-            onClick={() => setMobileOpen((o) => !o)}
-            className="text-ink lg:hidden"
-          >
-            <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-              <path d="M4 6h16M4 12h16M4 18h16" />
-            </svg>
-          </button>
+        <div className="mx-auto flex max-w-6xl justify-between px-6 h-full">
+          <div className="py-1.25">
+            <a href="#" aria-label="Afroza Editor — Accueil">
+              <Image src="/images/logo.png" alt="Afroza Editor" width={80} height={80} className="" />
+            </a>
+          </div>
+          <NavList dark={false} />
         </div>
       </div>
 
