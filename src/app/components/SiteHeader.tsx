@@ -116,7 +116,7 @@ export default function SiteHeader() {
   return (
     <>
       {/* Transparent header sitting over the hero */}
-      <div className="absolute inset-x-0 top-0 z-40 justify-center items-center">
+      <div className="absolute inset-x-0 top-0 z-40 justify-center items-center ">
         <div className="items-center flex justify-center">
           <div className="py-3 flex justify-between max-w-6xl w-full">
           <div className="text-white">
@@ -143,18 +143,20 @@ export default function SiteHeader() {
         </div>
       
 
-        <header className="items-center flex justify-center">
-          
-          <div className=" bg-black/50 flex justify-between max-w-6xl w-full">
-          {/* <div className="absolute inset-y-0 left-1/2 right-0 bg-black/50"></div> */}
-            <div className="pl-7.5 py-1.25">
-              <a href="#" aria-label="Afroza Editor — Accueil" >
-                <Image src="/images/logo.png" alt="Afroza Editor" width={80} height={80} />
-              </a>
-            </div>
-              <NavList dark={false}  />
-              </div>
-        </header>
+        <header className="flex items-center justify-center">
+  <div className="relative flex w-full bg-black/50 max-w-6xl justify-between">
+    {/* Fond : du bord droit de la zone contenu jusqu'au bord droit de l'écran */}
+    <div className="absolute inset-y-0 left-full right-[calc(50%-50vw)] -z-10 bg-black/50" />
+
+    <div className="pl-7.5 py-1.25">
+      <a href="#" aria-label="Afroza Editor — Accueil">
+        <Image src="/images/logo.png" alt="Afroza Editor" width={80} height={80} />
+      </a>
+    </div>
+    <NavList dark={false} />
+  </div>
+</header>
+
       </div>
 
       {/* Solid sticky navbar that slides in smoothly on scroll */}
