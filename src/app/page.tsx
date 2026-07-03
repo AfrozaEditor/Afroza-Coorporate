@@ -2,7 +2,7 @@ import Image from "next/image";
 import Counter from "./components/Counter";
 import HeroSlider from "./components/HeroSlider";
 import Reveal from "./components/Reveal";
-import SiteHeader from "./components/SiteHeader";
+import { Button } from "@/components/ui/button";
 
 /* ---------- Icons ---------- */
 function IconTarget() {
@@ -214,7 +214,6 @@ export default function Home() {
   return (
     <div className="flex w-full flex-1 flex-col bg-white text-ink">
       <div className="relative">
-        <SiteHeader />
         <HeroSlider />
       </div>
 
@@ -259,10 +258,10 @@ export default function Home() {
         />
         <div className="relative mx-auto max-w-360 px-6 py-30 lg:px-12">
           <SectionTitle eyebrow="Nos Services" title="Que Faisons-Nous ?" />
-          <div className="grid gap-10 lg:grid-cols-3">
+          <div className="grid gap-10 lg:grid-cols-3 ">
             {services.map((service, i) => (
               <Reveal key={service.title} delay={i * 130}>
-                <div className="group flex h-full flex-col overflow-hidden rounded-3xl bg-white shadow-md ring-1 ring-zinc-100 transition-all duration-500 hover:-translate-y-3 hover:shadow-2xl">
+                <div className="group flex h-full flex-col overflow-hidden rounded-3xl  bg-white shadow-md ring-1 ring-zinc-100 transition-all duration-500 hover:-translate-y-3 hover:shadow-2xl">
                   <div className="relative h-72 overflow-hidden">
                     <Image
                       src={service.image}
@@ -280,13 +279,13 @@ export default function Home() {
                     <h3 className="mb-4 text-2xl font-bold transition-colors duration-300 group-hover:text-brand">
                       {service.title}
                     </h3>
-                    <p className="mb-6 text-base leading-relaxed text-muted">
+                    <p className="mb-6 text-base leading-relaxed">
                       {service.description}
                     </p>
-                    <ul className="space-y-3 text-base text-muted">
+                    <ul className="space-y-3 text-base">
                       {service.points.map((point) => (
                         <li key={point} className="flex gap-3">
-                          <span className="mt-0.5 text-accent">✓</span>
+                          <span className="mt-0.5 ">✓</span>
                           <span>{point}</span>
                         </li>
                       ))}
@@ -333,14 +332,14 @@ export default function Home() {
           </Reveal>
 
           <Reveal delay={150}>
-            <p className="text-sm font-semibold uppercase tracking-[0.25em] text-accent">
+            <p className="text-sm font-semibold uppercase tracking-[0.25em]">
               Notre parcours
             </p>
             <h2 className="mt-3 text-4xl font-extrabold sm:text-5xl">
               2 Ans d&apos;Expérience
             </h2>
             <span className="mt-5 block h-1.5 w-24 rounded-full bg-brand" />
-            <p className="mt-6 max-w-xl text-lg leading-relaxed text-muted">
+            <p className="mt-6 max-w-xl text-lg leading-relaxed">
               Une expertise tech jeune mais déterminée, au service de vos projets
               digitaux — de la stratégie jusqu&apos;à la mise en production.
             </p>
@@ -357,7 +356,7 @@ export default function Home() {
                     <p className="text-4xl font-extrabold text-ink">
                       <Counter value={stat.value} suffix={stat.suffix} />
                     </p>
-                    <p className="text-sm text-muted">{stat.label}</p>
+                    <p className="text-sm">{stat.label}</p>
                   </div>
                 </div>
               ))}
@@ -490,7 +489,7 @@ export default function Home() {
       </section>
 
       {/* News / Projets */}
-      <section id="news" className="bg-white">
+      <section id="news" className="bg-white container mx-auto">
         <div className="mx-auto max-w-360 px-6 py-32 lg:px-12">
           <SectionTitle eyebrow="Nouveauté" title="Projets réalisés" />
           <div className="grid gap-10 lg:grid-cols-2">
@@ -551,7 +550,7 @@ export default function Home() {
                       <h3 className="text-xl font-bold transition-colors group-hover:text-brand">
                         {post.title}
                       </h3>
-                      <p className="mt-2 text-base leading-relaxed text-muted">
+                      <p className="mt-2 text-base leading-relaxed">
                         {post.text}
                       </p>
                       <a
@@ -570,48 +569,30 @@ export default function Home() {
       </section>
 
       {/* Contact — image en arrière-plan plein écran */}
-      <section id="contact" className="relative flex h-[500px] items-center bg-cover bg-fixed bg-center my-30"
-        style={{ backgroundImage: "url(/images/notre_philosophie.jpg)" }}>
+      {/* Contact — Image en arrière-plan */}
+      <section 
+        id="contact" 
+        className="relative bg-cover bg-fixed bg-center my-30 h-[500px]"
+        style={{ backgroundImage: "url(/images/notre_philosophie.jpg)" }}
+      >
+        {/* Overlay de fond */}
+        <div className="absolute inset-0 bg-brand/50" />
 
-        <div className="absolute inset-0 bg-brand/50"  />
+        {/* CE BLOC FAIT TOUT LE TRAVAIL :
+          Il fait la taille exacte des autres sections (max-w-7xl) et s'auto-centre (mx-auto).
+          En utilisant une grille à 2 colonnes (lg:grid-cols-2), le formulaire se place automatiquement sur la droite.
+        */}
+        <div className="absolute inset-0 mx-auto max-w-360 px-6 lg:px-12 grid lg:grid-cols-2 items-center pointer-events-none">
 
-        
-
-        <div className="absolute h-166.75 w-128.75 items-center flex -top-20.5 z-20  left-70">
-          {/* <Reveal>
-            <p className="text-sm font-semibold uppercase tracking-[0.25em] text-accent">
-              Toujours disponibles
-            </p>
-            <h2 className="mt-4 text-4xl font-extrabold leading-tight sm:text-5xl lg:text-6xl">
-              Parlons de votre <span className="text-accent">projet</span>
-            </h2>
-            <span className="mt-5 block h-1.5 w-24 rounded-full bg-accent" />
-            <p className="mt-7 max-w-lg text-lg leading-relaxed text-white/85">
-              Notre équipe vous recontacte rapidement pour transformer vos idées
-              en solutions digitales performantes et sur mesure.
-            </p>
-            <ul className="mt-10 space-y-5">
-              {[
-                { icon: <IconPin />, label: "CRADAT, Yaoundé — Cameroun" },
-                { icon: <IconPhone />, label: "+237 659 974 106" },
-                { icon: <IconMail />, label: "Afrozaeditor@yahoo.com" },
-              ].map((c) => (
-                <li key={c.label} className="group flex items-center gap-4">
-                  <span className="flex h-14 w-14 flex-shrink-0 items-center justify-center rounded-2xl bg-white/15 backdrop-blur-sm transition-all duration-300 group-hover:scale-110 group-hover:bg-accent">
-                    {c.icon}
-                  </span>
-                  <span className="text-base font-medium">{c.label}</span>
-                </li>
-              ))}
-            </ul>
-          </Reveal> */}
-
-          {/* <Reveal delay={150}> */}
+          {/* Colonne Droite (Contient le formulaire) */}
+          {/* On réactive les événements de souris avec 'pointer-events-auto' pour pouvoir cliquer sur les inputs */}
+          <div className="relative -top-15 z-20  w-full max-w-lg justify-self-center lg:justify-self-start pointer-events-auto">
+            
             <form
               action="#"
-              className=" bg-[#1F1F1F] h-full px-10 py-20 w-full"
+              className="bg-[#1F1F1F] px-10 py-16 w-full  shadow-2xl"
             >
-              <h3 className="text-sm text-white ">
+              <h3 className="text-sm text-white/70 uppercase tracking-wider">
                 We are always ready
               </h3>
               <p className="mt-2 text-3xl font-bold text-white">
@@ -619,40 +600,43 @@ export default function Home() {
               </p>
               <div className="mt-8 grid gap-4 sm:grid-cols-2">
                 <input
-                  className="border-b py-4 border-white text-white outline-none focus:border-brand focus:ring-brand/20"
+                  className="border-b py-4 border-white text-white outline-none focus:border-brand"
                   placeholder="Nom complet"
                   required
                 />
                 <input
-                  className="border-b py-4 border-white text-white outline-none focus:border-brand focus:ring-brand/20"
+                  className="border-b py-4 border-white text-white outline-none focus:border-brand"
                   placeholder="Adresse e-mail"
                   type="email"
                   required
                 />
               </div>
               <input
-                className="mt-4 w-full border-b py-4 border-white text-white outline-none focus:border-brand focus:ring-brand/20"
+                className="mt-4 w-full border-b py-4 border-white text-white outline-none focus:border-brand"
                 placeholder="Sujet"
               />
               <textarea
-                className="mt-4 w-full border-b py-4 border-white text-white outline-none focus:border-brand focus:ring-brand/20"
+                className="mt-4 w-full border-b py-4 border-white text-white outline-none focus:border-brand"
                 placeholder="Votre message"
-                rows={6}
+                rows={5}
               />
-              <div className="flex justify-end mt-4">
-                <button
-                type="submit"
-                className="rounded-full bg-brand text-white p-4 font-bold "
-              >
-                Envoyer le message
-              </button>
+              <div className="flex justify-end mt-6">
+                <Button
+                  type="submit"
+                  className="rounded-full bg-brand text-white font-bold px-8 py-6 text-md hover:bg-brand-dark transition-colors"
+                >
+                  Envoyer le message
+                </Button>
               </div>
-              
             </form>
-          {/* </Reveal> */}
+
+          </div>
+          
+          {/* Colonne Gauche (Vide pour laisser de la place ou pour y remettre le texte commenté plus tard) */}
+          <div className="hidden lg:block" />
+
         </div>
       </section>
-
       {/* Map / Localisation */}
       <section className="relative flex h-80 items-center justify-center overflow-hidden bg-gradient-to-b from-zinc-100 to-zinc-200">
         <div
@@ -681,121 +665,6 @@ export default function Home() {
       </section>
 
       {/* Footer main — team photo as full background */}
-      <footer className="relative bg-ink text-white pt-20">
-        <Image
-          src="/images/footer-bg.jpg"
-          alt="L'équipe Afroza Editor"
-          fill
-          sizes="100vw"
-          className="object-cover object-center"
-        />
-        <div className="absolute inset-0 bg-[#092025]/90" />
-
-        {/* Head office bar — semi-transparent so the background shows through */}
-        <div className="absolute flex items-center justify-center left-0.5 -top-17 w-full ">
-          <div className="mx-auto grid gap-px px-6 py-10 sm:grid-cols-3 bg-[#0F6562] ">
-            {[
-              { icon: <IconPin />, title: "Head Office", text: "CRADAT, Yaoundé — Cameroun" },
-              { icon: <IconPhone />, title: "Call Us", text: "+237 659 974 106" },
-              { icon: <IconMail />, title: "Mail Us", text: "Afrozaeditor@yahoo.com" },
-            ].map((box, i) => (
-              <Reveal key={box.title} delay={i * 120}>
-                <div className="group flex items-center justify-center gap-4 px-4 text-center sm:text-left">
-                  <span className="flex h-14 w-14 flex-shrink-0 items-center justify-center rounded-full border-2 border-white/40 transition-all duration-300 group-hover:scale-110 group-hover:border-accent group-hover:bg-accent">
-                    {box.icon}
-                  </span>
-                  <div>
-                    <h3 className="text-lg font-bold">{box.title}</h3>
-                    <p className="text-sm text-white/85">{box.text}</p>
-                  </div>
-                </div>
-              </Reveal>
-            ))}
-          </div>
-        </div>
-
-        <div className="relative mx-auto grid max-w-7xl gap-10 px-6 py-16 md:grid-cols-3">
-          <Reveal>
-            {/* <span className=" p-3 shadow-lg"> */}
-              <Image
-                src="/images/logo.png"
-                alt="Afroza Editor"
-                width={150}
-                height={70}
-                className="h-12 w-auto"
-              />
-            {/* </span> */}
-            <p className="mt-5 text-sm leading-relaxed text-white/70">
-              Conception et développement de systèmes numériques innovants pour
-              répondre à vos besoins spécifiques. Nous transformons vos idées en
-              solutions digitales performantes.
-            </p>
-            <div className="mt-5 flex gap-2">
-              {socialLetters.concat("ig").map((s) => (
-                <a
-                  key={s}
-                  href="#"
-                  className="flex h-9 w-9 items-center justify-center rounded-full bg-white/10 text-xs font-bold text-white transition-colors hover:bg-accent"
-                >
-                  {s}
-                </a>
-              ))}
-            </div>
-          </Reveal>
-
-          <Reveal delay={120}>
-            <h4 className="mb-5 text-base font-bold uppercase tracking-wide">
-              Liens utiles
-            </h4>
-            <div className="grid grid-cols-2 gap-x-6 gap-y-2 text-sm text-white/70">
-              {[
-                "À propos",
-                "Nos services",
-                "Projets",
-                "Notre équipe",
-                "Carrières",
-                "Blog",
-                "Investissements",
-                "Consultation",
-                "Contact",
-              ].map((link) => (
-                <a key={link} href="#" className="transition-colors hover:text-accent">
-                  {link}
-                </a>
-              ))}
-            </div>
-          </Reveal>
-
-          <Reveal delay={240}>
-            <h4 className="mb-5 text-base font-bold uppercase tracking-wide">
-              S&apos;abonner
-            </h4>
-            <p className="text-sm text-white/70">
-              Ne manquez pas nos actualités, inscrivez-vous via le formulaire
-              ci-dessous.
-            </p>
-            <form action="#" className="mt-4 flex overflow-hidden rounded-full bg-white/10 ring-1 ring-white/15">
-              <input
-                type="email"
-                placeholder="Adresse e-mail"
-                className="w-full bg-transparent px-5 py-3 text-sm text-white placeholder-white/50 outline-none"
-              />
-              <button
-                type="submit"
-                aria-label="S'abonner"
-                className="flex items-center justify-center bg-accent px-5 text-white transition-colors hover:bg-accent-dark"
-              >
-                <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
-                  <path d="M3 11l18-8-8 18-2.5-7.5z" />
-                </svg>
-              </button>
-            </form>
-          </Reveal>
-        </div>
-        <div className="relative border-t border-white/10 py-5 text-center text-xs text-white/60">
-          Copyright © 2026 Afroza Editor. Tous droits réservés.
-        </div>
-      </footer>
     </div>
   );
 }

@@ -1,5 +1,6 @@
 "use client";
 
+import { Button } from "@/components/ui/button";
 import Image from "next/image";
 import { useCallback, useEffect, useState } from "react";
 
@@ -125,7 +126,7 @@ export default function HeroSlider() {
         </div>
       ))}
 
-      <button
+      <Button
         type="button"
         onClick={prev}
         aria-label="Slide précédent"
@@ -134,7 +135,7 @@ export default function HeroSlider() {
         <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
           <path d="M15 18l-6-6 6-6" />
         </svg>
-      </button>
+      </Button>
       <button
         type="button"
         onClick={next}
