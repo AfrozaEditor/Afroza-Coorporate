@@ -1,4 +1,4 @@
-import { FaFacebookF, FaTwitter, FaLinkedinIn, FaInstagram, FaYoutube } from "react-icons/fa";
+import { FaFacebookF, FaTwitter, FaLinkedinIn, FaInstagram, FaYoutube, FaGithub, FaTiktok } from "react-icons/fa";
 
 interface SocialIconProps {
   id: string;
@@ -17,6 +17,10 @@ export function SocialIcon({ id, size = 18 }: SocialIconProps) {
       return <FaLinkedinIn size={size} />;
     case "instagram":
       return <FaInstagram size={size} />;
+    case "github":
+      return <FaGithub size={size} />;
+    case "tiktok":
+      return <FaTiktok size={size} />;
     default:
       return null;
   }

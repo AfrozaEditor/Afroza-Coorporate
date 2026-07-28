@@ -1,8 +1,11 @@
 import Image from "next/image";
-import Counter from "./components/Counter";
-import HeroSlider from "./components/HeroSlider";
-import Reveal from "./components/Reveal";
+import Counter from "../components/common/Counter";
+import HeroSlider from "../components/common/HeroSlider";
+import Reveal from "../components/common/Reveal";
 import { Button } from "@/components/ui/button";
+import { socials } from "@/config/social";
+import { SocialIcon } from "@/components/ui/social-icon";
+import Link from "next/link";
 
 /* ---------- Icons ---------- */
 function IconTarget() {
@@ -87,28 +90,6 @@ function IconMega() {
     </svg>
   );
 }
-function IconPin() {
-  return (
-    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8">
-      <path d="M12 2a7 7 0 0 0-7 7c0 5 7 13 7 13s7-8 7-13a7 7 0 0 0-7-7z" />
-      <circle cx="12" cy="9" r="2.5" />
-    </svg>
-  );
-}
-function IconPhone() {
-  return (
-    <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor">
-      <path d="M6.6 10.8a15.3 15.3 0 0 0 6.6 6.6l2.2-2.2a1 1 0 0 1 1-.24c1.1.37 2.3.57 3.5.57a1 1 0 0 1 1 1V20a1 1 0 0 1-1 1A17 17 0 0 1 3 4a1 1 0 0 1 1-1h3.5a1 1 0 0 1 1 1c0 1.2.2 2.4.57 3.5a1 1 0 0 1-.24 1L6.6 10.8z" />
-    </svg>
-  );
-}
-function IconMail() {
-  return (
-    <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor">
-      <path d="M3 5h18a1 1 0 0 1 1 1v12a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1V6a1 1 0 0 1 1-1zm9 7L4.2 6.8 4 7v.2l8 5.3 8-5.3V7l-.2-.2L12 12z" />
-    </svg>
-  );
-}
 
 /* ---------- Data ---------- */
 const features = [
@@ -144,7 +125,7 @@ const services = [
     image: "/images/services/service1.jpg",
     title: "Développement Web & Mobile",
     description:
-      "Sites vitrines, plateformes web, applications mobiles multiplateformes (iOS, Android) et applications de bureau.",
+      "Sites vitrines, plateformes web, applications mobiles multiplateformes (iOS, Android), et applications de bureau.", 
     points: [
       "Sites vitrines professionnels et plateformes web",
       "Applications mobiles iOS / Android",
@@ -185,27 +166,66 @@ const stats = [
 ];
 
 const team = [
-  { name: "Karel Ondo", role: "CEO", photo: "/images/team/team1.jpg" },
-  { name: "Fokou Sheryle", role: "COO", photo: "/images/team/team2.jpg" },
-  { name: "Cheik Hassan Feze", role: "CMO", photo: "/images/team/team3.jpg" },
-  { name: "Jedidia Souop", role: "CTO", photo: "/images/team/team4.jpeg" },
-  { name: "Bell Aqil", role: "DevOps", photo: "/images/team/team9.jpg" },
-  { name: "Jires Nana", role: "Data / IA Analyst", photo: "/images/team/team6.jpg" },
-  { name: "Simo Menelik", role: "Dev Backend", photo: "/images/team/team7.jpeg" },
-  { name: "Franck Azab", role: "Dev Mobile", photo: "/images/team/team2.jpg" },
-];
+  { name: "Karel Ondo", role: "CEO", photo: "/images/team/team1.jpg", socials : [
+    { id: "linkedin", name: "LinkedIn", href: "https://linkedin.com/in/votreprofil"},
+    { id: "facebook", name: "Facebook", href: "https://facebook.com/votrepage" },
+  { id: "github", name: "Github", href: "https://github.com/AfrozaEditor" },
 
-const socialLetters = ["f", "t", "g", "in"];
+  ] },
+  { name: "Fokou Sheryle", role: "COO", photo: "/images/team/team2.jpg", socials : [
+    { id: "linkedin", name: "LinkedIn", href: "https://linkedin.com/in/votreprofil"},
+    { id: "facebook", name: "Facebook", href: "https://facebook.com/votrepage" },
+  { id: "github", name: "Github", href: "https://github.com/AfrozaEditor" },
+
+  ] },
+  { name: "Jedidia Kamdem Souop", role: "CTO", photo: "/images/team/team4.jpeg", socials : [
+    { id: "linkedin", name: "LinkedIn", href: "https://linkedin.com/in/jedidia-kamdem-souop-ba58753b0/"},
+    { id: "github", name: "Github", href: "https://github.com/JedidiaDev" },
+    { id: "instagram", name: "Instagram", href: "https://instagram.com/kamdemjedidia" },
+    { id: "facebook", name: "Facebook", href: "https://facebook.com/jedidia.kamdem" },
+
+  ] },
+  { name: "Cheik Hassan Feze", role: "CMO", photo: "/images/team/team3.jpg", socials : [
+    { id: "linkedin", name: "LinkedIn", href: "https://linkedin.com/in/votreprofil"},
+    { id: "facebook", name: "Facebook", href: "https://facebook.com/votrepage" },
+  { id: "github", name: "Github", href: "https://github.com/AfrozaEditor" },
+
+  ]},
+  { name: "Melotech", role: "DevOps", photo: "/images/team/team9.jpg", socials : [
+    { id: "linkedin", name: "LinkedIn", href: "https://linkedin.com/in/votreprofil"},
+    { id: "facebook", name: "Facebook", href: "https://facebook.com/votrepage" },
+  { id: "github", name: "Github", href: "https://github.com/AfrozaEditor" },
+
+  ] },
+  { name: "Jires Nana", role: "Data / IA Analyst", photo: "/images/team/team6.jpg", socials : [
+    { id: "linkedin", name: "LinkedIn", href: "https://linkedin.com/in/votreprofil"},
+    { id: "facebook", name: "Facebook", href: "https://facebook.com/votrepage" },
+  { id: "github", name: "Github", href: "https://github.com/AfrozaEditor" },
+
+  ] },
+  { name: "Simo Menelik", role: "Dev Backend", photo: "/images/team/team7.jpeg", socials : [
+    { id: "linkedin", name: "LinkedIn", href: "https://linkedin.com/in/votreprofil"},
+    { id: "facebook", name: "Facebook", href: "https://facebook.com/votrepage" },
+  { id: "github", name: "Github", href: "https://github.com/AfrozaEditor" },
+
+  ] },
+  { name: "Franck Azab", role: "Dev Mobile", photo: "/images/team/team2.jpg", socials : [
+    { id: "linkedin", name: "LinkedIn", href: "https://linkedin.com/in/votreprofil"},
+    { id: "facebook", name: "Facebook", href: "https://facebook.com/votrepage" },
+  { id: "github", name: "Github", href: "https://github.com/AfrozaEditor" },
+
+  ] },
+];
 
 /* ---------- Section title ---------- */
 function SectionTitle({ eyebrow, title }: { eyebrow: string; title: string }) {
   return (
     <Reveal className="mb-14 text-center">
-      <p className="text-sm font-semibold uppercase tracking-[0.25em] text-accent">
+      <p className="text-[18px] leading-normal text-[rgb(98,108,132)]">
         {eyebrow}
       </p>
-      <h2 className="mt-3 text-3xl font-extrabold sm:text-4xl">{title}</h2>
-      <span className="mx-auto mt-4 block h-1 w-20 rounded-full bg-brand" />
+      <h2 className="mt-3 text-[44px] leading-9 font-bold">{title}</h2>
+      <span className="mx-auto mt-4 block h-0.5 w-15 rounded-full bg-brand" />
     </Reveal>
   );
 }
@@ -218,7 +238,7 @@ export default function Home() {
       </div>
 
       {/* Features — full-bleed panels */}
-      <section id="about" className="grid md:grid-cols-3">
+      <section className="grid md:grid-cols-3">
         {features.map((feature) => (
           <div
             key={feature.title}
@@ -261,28 +281,29 @@ export default function Home() {
           <div className="grid gap-10 lg:grid-cols-3 ">
             {services.map((service, i) => (
               <Reveal key={service.title} delay={i * 130}>
-                <div className="group flex h-full flex-col overflow-hidden rounded-3xl  bg-white shadow-md ring-1 ring-zinc-100 transition-all duration-500 hover:-translate-y-3 hover:shadow-2xl">
-                  <div className="relative h-72 overflow-hidden">
+                <div className="group flex h-full flex-col overflow-hidden bg-transparent transition-all duration-500 hover:-translate-y-3">
+                  <div className="relative w-full overflow-hidden">
                     <Image
                       src={service.image}
                       alt={service.title}
-                      fill
+                      width={800}
+                      height={0}
                       sizes="(max-width: 1024px) 100vw, 33vw"
-                      className="object-cover transition-transform duration-700 group-hover:scale-110"
+                      className="object-cover transition-transform duration-700 group-hover:scale-110 "
+                      style={{height: 'auto'}}
                     />
-                    <div className="absolute inset-0 bg-linear-to-t from-ink/70 via-transparent to-transparent opacity-60 transition-opacity duration-500 group-hover:opacity-90" />
-                    {/* <span className="absolute -bottom-9 left-8 flex h-20 w-20 items-center justify-center rounded-2xl bg-brand text-white shadow-xl shadow-brand/40 transition-all duration-500 group-hover:scale-110 group-hover:bg-accent">
-                      {service.icon}
-                    </span> */}
                   </div>
-                  <div className="flex flex-1 flex-col p-9 pt-14">
+                  <div className="flex flex-1 flex-col pt-8">
+                    <span className="absolute inset-0 right-0 -z-1">
+                      {service.icon}
+                    </span>
                     <h3 className="mb-4 text-2xl font-bold transition-colors duration-300 group-hover:text-brand">
                       {service.title}
                     </h3>
                     <p className="mb-6 text-base leading-relaxed">
                       {service.description}
                     </p>
-                    <ul className="space-y-3 text-base">
+                    <ul className="space-y-3 text-base px-4">
                       {service.points.map((point) => (
                         <li key={point} className="flex gap-3">
                           <span className="mt-0.5 ">✓</span>
@@ -290,12 +311,12 @@ export default function Home() {
                         </li>
                       ))}
                     </ul>
-                    <a
-                      href="#contact"
-                      className="mt-8 inline-flex w-fit items-center gap-2 rounded-full bg-brand/10 px-6 py-3 text-base font-semibold text-brand transition-all duration-300 hover:gap-3 hover:bg-brand hover:text-white"
+                    <Button
+                      variant="link"
+                      className="mt-8 justify-start text-brand text-md transition-all"
                     >
                       En savoir plus <span>→</span>
-                    </a>
+                    </Button>
                   </div>
                 </div>
               </Reveal>
@@ -367,12 +388,12 @@ export default function Home() {
 
       {/* Culture & philosophie — parallax */}
       <section
-        className="relative flex min-h-165 items-center overflow-hidden bg-cover bg-fixed bg-center"
+        className="relative flex min-h-165 items-center bg-cover bg-fixed bg-center"
         style={{ backgroundImage: "url(/images/notre_philosophie.jpg)" }}
       >
-        <div className="absolute inset-0 bg-gradient-to-r from-ink via-ink/80 to-ink/30" />
-        <div className="relative mx-auto grid w-full max-w-7xl items-center gap-12 px-6 py-28 lg:grid-cols-2">
-          <Reveal className="text-white">
+        <div className="absolute inset-0 bg-black/80" />
+        <div className="relative mx-auto grid w-full max-w-7xl items-center gap-14 px-6 py-28 lg:grid-cols-2">
+          <Reveal className="text-white w-118.75">
             <p className="text-sm font-semibold uppercase tracking-[0.25em] text-accent">
               Intégrité
             </p>
@@ -389,7 +410,7 @@ export default function Home() {
             </p>
             <a
               href="#services"
-              className="mt-8 inline-flex items-center gap-2 rounded-full bg-accent px-7 py-3 text-sm font-semibold text-white shadow-lg shadow-accent/30 transition-all hover:gap-3 hover:bg-accent-dark"
+              className="mt-8 inline-flex items-center gap-2 rounded-full bg-brand px-7 py-3 text-sm font-semibold text-white shadow-lg shadow-accent/30 transition-all hover:gap-3 hover:bg-accent-dark"
             >
               Explorer nos projets <span>→</span>
             </a>
@@ -404,7 +425,7 @@ export default function Home() {
             ].map((v, i) => (
               <Reveal key={v.title} delay={i * 110}>
                 <div className="h-full rounded-2xl bg-white/10 p-6 ring-1 ring-white/15 backdrop-blur-md transition-all duration-300 hover:-translate-y-1 hover:bg-white/20">
-                  <span className="mb-4 flex h-12 w-12 items-center justify-center rounded-xl bg-accent text-white">
+                  <span className="mb-4 flex h-12 w-12 items-center justify-center rounded-xl bg-brand text-white">
                     {v.icon}
                   </span>
                   <h3 className="text-lg font-bold text-white">{v.title}</h3>
@@ -461,14 +482,14 @@ export default function Home() {
                         {member.role}
                       </p>
                       <div className="flex justify-center gap-2.5">
-                        {socialLetters.map((s) => (
-                          <a
-                            key={s}
-                            href="#"
-                            className="flex h-9 w-9 items-center justify-center rounded-full bg-white/20 text-xs font-bold text-white backdrop-blur transition-colors hover:bg-white hover:text-brand"
+                        {member.socials.map((s) => (
+                          <Link
+                            key={s.id}
+                            href={s.href}
+                            className="flex h-9 w-9 items-center justify-center rounded-full  text-xs font-bold text-white backdrop-blur transition-colors hover:bg-white hover:text-brand"
                           >
-                            {s}
-                          </a>
+                            <SocialIcon id={s.id} size={16} />
+                          </Link>
                         ))}
                       </div>
                     </div>
@@ -489,79 +510,91 @@ export default function Home() {
       </section>
 
       {/* News / Projets */}
-      <section id="news" className="bg-white container mx-auto">
+      <section id="news" className="bg-white container mx-auto h-full">
         <div className="mx-auto max-w-360 px-6 py-32 lg:px-12">
-          <SectionTitle eyebrow="Nouveauté" title="Projets réalisés" />
-          <div className="grid gap-10 lg:grid-cols-2">
+          <SectionTitle eyebrow="Nouveauté" title="Projets Réalisés" />
+          <div className="grid gap-10 lg:grid-cols-2 h-full min-h-[500px]">
             {/* Featured project */}
-            <Reveal>
-              <article className="group relative h-full min-h-[560px] overflow-hidden rounded-[2rem] shadow-xl">
+            {/* <Reveal> */}
+              <article className="group relative  overflow-hidden shadow-xl">
                 <Image
-                  src="/images/nos_projets.png"
+                  src="/news/news1.jpg"
                   alt="Projet vedette Afroza"
                   fill
-                  sizes="(max-width: 1024px) 100vw, 50vw"
-                  className="object-cover transition-transform duration-700 group-hover:scale-110"
+                  sizes="(max-width: 1024px)"
+                  className="object-cover transition-transform duration-700 h-full group-hover:scale-110"
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-ink via-ink/55 to-transparent" />
-                <div className="absolute inset-x-0 bottom-0 p-10 text-white">
-                  <span className="inline-block rounded-full bg-accent px-4 py-1.5 text-xs font-semibold uppercase tracking-wide">
-                    News · 13 juin 2026
-                  </span>
-                  <h3 className="mt-5 text-3xl font-extrabold leading-snug lg:text-4xl">
+                <div className="absolute inset-0 bg-black/70" />
+                <div className="flex flex-col absolute inset-0 justify-between text-white">
+                  <div className="p-10 ">
+                    <span className="inline-block py-1.5 text-md italic font-[400] tracking-wide">
+                      News
+                    </span>
+                  </div>
+
+                  <div className="p-10">
+                    <span className="inline-block text-md italic font-[400] tracking-wide">
+                      13 juin, 2026
+                    </span>
+                    <h3 className="mt-5 text-3xl font-extrabold leading-snug lg:text-4xl">
                     Mise sur pied du prototype final d&apos;AS pour une éventuelle
                     mise en circulation
                   </h3>
-                  <a
-                    href="#"
-                    className="mt-7 inline-flex items-center gap-2 rounded-full bg-white px-7 py-3 text-base font-semibold text-brand transition-all hover:gap-3"
-                  >
-                    Lire la suite <span>→</span>
-                  </a>
+                  <Button className="bg-brand p-8 rounded-full text-md font-semibold mt-4">
+                      Lire la suite <span>→</span>
+                  </Button>
+                  </div>
                 </div>
+              
               </article>
-            </Reveal>
+            {/* </Reveal> */}
 
             {/* Secondary posts */}
-            <div className="flex flex-col gap-10">
+            <div className="flex flex-col-1 gap-10">
               {[
                 {
-                  date: "20 mai 2026",
+                  id: 1,
+                  date: "20 mai, 2026",
                   title: "Construction de l'application APS pour le hackathon ID4Africa",
                   text: "Une solution d'identité numérique conçue et présentée lors du hackathon ID4Africa.",
                 },
                 {
-                  date: "02 avril 2026",
+                  id: 2,
+                  date: "02 avril, 2026",
                   title: "Refonte de la plateforme e-commerce d'un client local",
                   text: "Migration complète, nouvelle UX et performances multipliées pour un commerçant camerounais.",
                 },
               ].map((post, i) => (
-                <Reveal key={post.title} delay={i * 150} className="flex-1">
-                  <article className="group flex h-full items-center gap-6 rounded-[2rem] bg-zinc-50 p-8 ring-1 ring-zinc-100 transition-all duration-300 hover:-translate-y-1 hover:bg-white hover:shadow-xl">
-                    <div className="flex h-20 w-20 flex-shrink-0 flex-col items-center justify-center rounded-2xl bg-brand text-white">
-                      <span className="text-2xl font-extrabold leading-none">
-                        {post.date.split(" ")[0]}
-                      </span>
-                      <span className="text-[11px] uppercase">
-                        {post.date.split(" ")[1]}
+                // <Reveal key={post.title} delay={i * 150} className="flex-1">
+                  <article className="group flex flex-col justify-between h-full items-start p-8 gap-6 border bg-zinc-50  ring-1 ring-zinc-100 transition-all duration-300 hover:-translate-y-1 hover:bg-white hover:shadow-xl">
+                    <div className="">
+                      <span className="nline-block py-1.5 text-md italic font-normal ">
+                        News
                       </span>
                     </div>
                     <div>
-                      <h3 className="text-xl font-bold transition-colors group-hover:text-brand">
+                      <h3 className="text-[22px] font-bold transition-colors group-hover:text-brand">
                         {post.title}
                       </h3>
-                      <p className="mt-2 text-base leading-relaxed">
+                      <span className="inline-block text-[14px] italic font-normal py-4">
+                        {post.date}
+                      </span>
+                      <p className="text-base leading-relaxed">
                         {post.text}
                       </p>
+                    </div>
+
+                    <div className="flex justify-end w-full">
                       <a
                         href="#"
-                        className="mt-4 inline-flex items-center gap-1 text-base font-semibold text-accent transition-all hover:gap-2"
+                        className=" text-base font-semibold text-brand transition-all hover:gap-2"
                       >
                         Lire la suite <span>→</span>
                       </a>
                     </div>
+                      
                   </article>
-                </Reveal>
+                // </Reveal>
               ))}
             </div>
           </div>
@@ -576,7 +609,7 @@ export default function Home() {
         style={{ backgroundImage: "url(/images/notre_philosophie.jpg)" }}
       >
         {/* Overlay de fond */}
-        <div className="absolute inset-0 bg-brand/50" />
+        <div className="absolute inset-0 bg-brand/70" />
 
         {/* CE BLOC FAIT TOUT LE TRAVAIL :
           Il fait la taille exacte des autres sections (max-w-7xl) et s'auto-centre (mx-auto).

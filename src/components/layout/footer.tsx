@@ -1,6 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
-import Reveal from "@/app/components/Reveal";
+import Reveal from "@/components/common/Reveal";
 import { socials } from "@/config/social";
 import { Mail, Phone, Pin } from "lucide-react";
 import { SocialIcon } from "../ui/social-icon";
@@ -56,22 +56,22 @@ export default function Footer() {
               répondre à vos besoins spécifiques. Nous transformons vos idées en
               solutions digitales performantes.
             </p>
-            <div className="mt-5 flex gap-2">
+            <div className="mt-5 flex gap-4">
               {socials.map((s) => (
               <Link
                 key={s.id}
                 href={s.href}
-                className="flex h-7 w-7 items-center justify-center  text-[10px] font-bold text-white/80 transition-all hover:scale-110 hover:text-brand"
+                className="flex h-9 w-9 items-center justify-center rounded-full bg-white/10 text-[10px] font-bold text-white/80 transition-all hover:scale-110 hover:text-brand"
               >
-                <SocialIcon id={s.id} size={18} />
+                <SocialIcon id={s.id} size={16} />
               </Link>
             ))}
             </div>
           </Reveal>
 
           <Reveal delay={120}>
-            <h4 className="mb-5 text-base font-bold uppercase tracking-wide">
-              Liens utiles
+            <h4 className="mb-5 text-2xl font-bold tracking-wide">
+              Liens Utiles
             </h4>
             <div className="grid grid-cols-2 gap-x-6 gap-y-2 text-sm text-white/70">
               {[
@@ -81,35 +81,40 @@ export default function Footer() {
                 "Notre équipe",
                 "Carrières",
                 "Blog",
+                "Why Need Agent?",
                 "Investissements",
                 "Consultation",
                 "Contact",
               ].map((link) => (
-                <a key={link} href="#" className="transition-colors hover:text-accent">
-                  {link}
-                </a>
+                <div className="flex items-center justify-start gap-2 pb-2">
+                  <div className="h-0.5 w-2 bg-brand"/>
+                  <a key={link} href="#" className="transition-colors hover:text-accent font-bold">
+                    {link}
+                  </a>
+                </div>
+                
               ))}
             </div>
           </Reveal>
 
           <Reveal delay={240}>
-            <h4 className="mb-5 text-base font-bold uppercase tracking-wide">
+            <h4 className="mb-5 text-2xl font-bold tracking-wide">
               S&apos;abonner
             </h4>
             <p className="text-sm text-white/70">
               Ne manquez pas nos actualités, inscrivez-vous via le formulaire
               ci-dessous.
             </p>
-            <form action="#" className="mt-4 flex overflow-hidden rounded-full bg-white/10 ring-1 ring-white/15">
+            <form action="#" className="mt-4 flex overflow-hidden rounded-full bg-transparent ring-1 ring-white/15">
               <input
                 type="email"
-                placeholder="Adresse e-mail"
-                className="w-full bg-transparent px-5 py-3 text-sm text-white placeholder-white/50 outline-none"
+                placeholder="Adresse Email"
+                className="w-full bg-white px-5 py-3 text-sm text-black/50 placeholder:text-gray-500 outline-none"
               />
               <button
                 type="submit"
                 aria-label="S'abonner"
-                className="flex items-center justify-center bg-accent px-5 text-white transition-colors hover:bg-accent-dark"
+                className="flex items-center justify-center bg-brand px-5 text-white transition-colors hover:bg-accent-dark"
               >
                 <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
                   <path d="M3 11l18-8-8 18-2.5-7.5z" />

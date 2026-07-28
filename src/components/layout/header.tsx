@@ -140,12 +140,12 @@ export default function Header() {
 
       {/* Solid sticky navbar that slides in smoothly on scroll */}
       <div
-        className={`fixed inset-x-0 top-0 z-50 bg-black/50 shadow-lg transition-transform duration-500 ease-out h-20 ${
+        className={`fixed inset-x-0 top-0 z-50 bg-black/50 shadow-lg transition-transform duration-500 ease-out h-22.5 ${
           scrolled ? "translate-y-0" : "-translate-y-full"
         }`}
       >
         <div className="mx-auto flex max-w-6xl justify-between px-6 h-full">
-          <div className="py-1.25">
+          <div className="flex items-center">
             <a href="#" aria-label="Afroza Editor — Accueil">
               <Image src="/images/logo.png" alt="Afroza Editor" width={80} height={80} className="" />
             </a>

@@ -53,6 +53,15 @@
   --animate-fade-up: fade-up 0.7s ease forwards;
   --animate-kenburns: kenburns 8s ease-out forwards;
   --font-sans: 'Gilroy', ui-sans-serif, system-ui, sans-serif;
+
+  --animate-marquee: marquee 25s linear infinite;
+
+}
+
+
+@keyframes marquee {
+  from { transform: translateX(0%); }
+  to { transform: translateX(-50%); }
 }
 
 html {
