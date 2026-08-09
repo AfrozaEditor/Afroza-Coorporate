@@ -75,22 +75,21 @@ export default function Footer() {
             </h4>
             <div className="grid grid-cols-2 gap-x-6 gap-y-2 text-sm text-white/70">
               {[
-                "À propos",
-                "Nos services",
-                "Projets",
-                "Notre équipe",
-                "Carrières",
-                "Blog",
-                "Why Need Agent?",
-                "Investissements",
-                "Consultation",
-                "Contact",
+                { label: "À propos", href: "/about" },
+                { label: "Nos services", href: "/services" },
+                { label: "Projets", href: "/features" },
+                { label: "Notre équipe", href: "/about#team" },
+                { label: "Tarifs", href: "/about/tarifs" },
+                { label: "Blog", href: "/news" },
+                { label: "FAQ", href: "/about/faq" },
+                { label: "Consultation", href: "/contact" },
+                { label: "Contact", href: "/contact" },
               ].map((link) => (
-                <div className="flex items-center justify-start gap-2 pb-2">
+                <div key={link.label} className="flex items-center justify-start gap-2 pb-2">
                   <div className="h-0.5 w-2 bg-brand"/>
-                  <a key={link} href="#" className="transition-colors hover:text-accent font-bold">
-                    {link}
-                  </a>
+                  <Link href={link.href} className="transition-colors hover:text-accent font-bold">
+                    {link.label}
+                  </Link>
                 </div>
                 
               ))}

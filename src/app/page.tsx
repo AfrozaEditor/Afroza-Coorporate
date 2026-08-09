@@ -3,9 +3,10 @@ import Counter from "../components/common/Counter";
 import HeroSlider from "../components/common/HeroSlider";
 import Reveal from "../components/common/Reveal";
 import { Button } from "@/components/ui/button";
-import { socials } from "@/config/social";
 import { SocialIcon } from "@/components/ui/social-icon";
 import Link from "next/link";
+import { teamMembers } from "@/data/team";
+import { services as serviceCatalog } from "@/data/services";
 
 /* ---------- Icons ---------- */
 function IconTarget() {
@@ -119,44 +120,16 @@ const features = [
   },
 ];
 
-const services = [
-  {
-    icon: <IconCode />,
-    image: "/images/services/service1.jpg",
-    title: "Développement Web & Mobile",
-    description:
-      "Sites vitrines, plateformes web, applications mobiles multiplateformes (iOS, Android), et applications de bureau.", 
-    points: [
-      "Sites vitrines professionnels et plateformes web",
-      "Applications mobiles iOS / Android",
-      "Applications de bureau multiplateformes",
-    ],
-  },
-  {
-    icon: <IconDesign />,
-    image: "/images/services/service2.jpg",
-    title: "Conception UI/UX & Design Visuel",
-    description:
-      "Design d'interfaces, maquettes, prototypage, création graphique, motion design et tout projet de conception visuelle.",
-    points: [
-      "Design d'interfaces et expérience utilisateur",
-      "Maquettes et prototypage interactif",
-      "Création graphique (affiches, cartes de visite)",
-    ],
-  },
-  {
-    icon: <IconMega />,
-    image: "/images/services/service3.jpg",
-    title: "Contenu & Marketing Digital",
-    description:
-      "Stratégie de communication, social media management, publicité digitale et contenu créatif (photo, vidéo, animation).",
-    points: [
-      "Stratégie de communication digitale",
-      "Gestion des réseaux sociaux",
-      "Campagnes publicitaires en ligne",
-    ],
-  },
-];
+const serviceIcons = {
+  "developpement-web-mobile": <IconCode />,
+  "conception-ui-ux-design-visuel": <IconDesign />,
+  "contenu-marketing-digital": <IconMega />,
+};
+
+const services = serviceCatalog.map((service) => ({
+  ...service,
+  icon: serviceIcons[service.slug as keyof typeof serviceIcons],
+}));
 
 const stats = [
   { icon: <IconChart />, value: 3, suffix: "", label: "Projets réalisés" },
@@ -165,66 +138,16 @@ const stats = [
   { icon: <IconRocket />, value: 2024, suffix: "", label: "Année de lancement" },
 ];
 
-const team = [
-  { name: "Karel Ondo", role: "CEO", photo: "/images/team/team1.jpg", socials : [
-    { id: "linkedin", name: "LinkedIn", href: "https://linkedin.com/in/votreprofil"},
-    { id: "facebook", name: "Facebook", href: "https://facebook.com/votrepage" },
-  { id: "github", name: "Github", href: "https://github.com/AfrozaEditor" },
-
-  ] },
-  { name: "Fokou Sheryle", role: "COO", photo: "/images/team/team2.jpg", socials : [
-    { id: "linkedin", name: "LinkedIn", href: "https://linkedin.com/in/votreprofil"},
-    { id: "facebook", name: "Facebook", href: "https://facebook.com/votrepage" },
-  { id: "github", name: "Github", href: "https://github.com/AfrozaEditor" },
-
-  ] },
-  { name: "Jedidia Kamdem Souop", role: "CTO", photo: "/images/team/team4.jpeg", socials : [
-    { id: "linkedin", name: "LinkedIn", href: "https://linkedin.com/in/jedidia-kamdem-souop-ba58753b0/"},
-    { id: "github", name: "Github", href: "https://github.com/JedidiaDev" },
-    { id: "instagram", name: "Instagram", href: "https://instagram.com/kamdemjedidia" },
-    { id: "facebook", name: "Facebook", href: "https://facebook.com/jedidia.kamdem" },
-
-  ] },
-  { name: "Cheik Hassan Feze", role: "CMO", photo: "/images/team/team3.jpg", socials : [
-    { id: "linkedin", name: "LinkedIn", href: "https://linkedin.com/in/votreprofil"},
-    { id: "facebook", name: "Facebook", href: "https://facebook.com/votrepage" },
-  { id: "github", name: "Github", href: "https://github.com/AfrozaEditor" },
-
-  ]},
-  { name: "Melotech", role: "DevOps", photo: "/images/team/team9.jpg", socials : [
-    { id: "linkedin", name: "LinkedIn", href: "https://linkedin.com/in/votreprofil"},
-    { id: "facebook", name: "Facebook", href: "https://facebook.com/votrepage" },
-  { id: "github", name: "Github", href: "https://github.com/AfrozaEditor" },
-
-  ] },
-  { name: "Jires Nana", role: "Data / IA Analyst", photo: "/images/team/team6.jpg", socials : [
-    { id: "linkedin", name: "LinkedIn", href: "https://linkedin.com/in/votreprofil"},
-    { id: "facebook", name: "Facebook", href: "https://facebook.com/votrepage" },
-  { id: "github", name: "Github", href: "https://github.com/AfrozaEditor" },
-
-  ] },
-  { name: "Simo Menelik", role: "Dev Backend", photo: "/images/team/team7.jpeg", socials : [
-    { id: "linkedin", name: "LinkedIn", href: "https://linkedin.com/in/votreprofil"},
-    { id: "facebook", name: "Facebook", href: "https://facebook.com/votrepage" },
-  { id: "github", name: "Github", href: "https://github.com/AfrozaEditor" },
-
-  ] },
-  { name: "Franck Azab", role: "Dev Mobile", photo: "/images/team/team2.jpg", socials : [
-    { id: "linkedin", name: "LinkedIn", href: "https://linkedin.com/in/votreprofil"},
-    { id: "facebook", name: "Facebook", href: "https://facebook.com/votrepage" },
-  { id: "github", name: "Github", href: "https://github.com/AfrozaEditor" },
-
-  ] },
-];
-
 /* ---------- Section title ---------- */
 function SectionTitle({ eyebrow, title }: { eyebrow: string; title: string }) {
   return (
-    <Reveal className="mb-14 text-center">
-      <p className="text-[18px] leading-normal text-[rgb(98,108,132)]">
+    <Reveal className="mb-10 text-center sm:mb-14">
+      <p className="text-base leading-normal text-[rgb(98,108,132)] sm:text-[18px]">
         {eyebrow}
       </p>
-      <h2 className="mt-3 text-[44px] leading-9 font-bold">{title}</h2>
+      <h2 className="mt-3 text-3xl font-bold leading-tight sm:text-[44px]">
+        {title}
+      </h2>
       <span className="mx-auto mt-4 block h-0.5 w-15 rounded-full bg-brand" />
     </Reveal>
   );
@@ -242,7 +165,7 @@ export default function Home() {
         {features.map((feature) => (
           <div
             key={feature.title}
-            className="group relative flex h-116 items-center justify-center overflow-hidden"
+            className="group relative flex min-h-80 items-center justify-center overflow-hidden sm:min-h-96 lg:min-h-[29rem]"
           >
             <Image
               src={feature.bg}
@@ -276,34 +199,33 @@ export default function Home() {
         <div
           className="pointer-events-none absolute -left-32 top-20 h-80 w-80 rounded-full bg-brand/5 blur-3xl"
         />
-        <div className="relative mx-auto max-w-360 px-6 py-30 lg:px-12">
+        <div className="relative mx-auto max-w-7xl px-4 py-16 sm:px-6 sm:py-24 lg:px-8 lg:py-30">
           <SectionTitle eyebrow="Nos Services" title="Que Faisons-Nous ?" />
           <div className="grid gap-10 lg:grid-cols-3 ">
             {services.map((service, i) => (
               <Reveal key={service.title} delay={i * 130}>
                 <div className="group flex h-full flex-col overflow-hidden bg-transparent transition-all duration-500 hover:-translate-y-3">
-                  <div className="relative w-full overflow-hidden">
+                  <div className="relative aspect-[4/3] w-full overflow-hidden">
                     <Image
                       src={service.image}
                       alt={service.title}
                       width={800}
-                      height={0}
+                      height={600}
                       sizes="(max-width: 1024px) 100vw, 33vw"
-                      className="object-cover transition-transform duration-700 group-hover:scale-110 "
-                      style={{height: 'auto'}}
+                      className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-110"
                     />
                   </div>
-                  <div className="flex flex-1 flex-col pt-8">
-                    <span className="absolute inset-0 right-0 -z-1">
+                  <div className="relative flex flex-1 flex-col pt-6 sm:pt-8">
+                    <span className="pointer-events-none absolute right-0 top-4 -z-1 text-brand/10">
                       {service.icon}
                     </span>
-                    <h3 className="mb-4 text-2xl font-bold transition-colors duration-300 group-hover:text-brand">
+                    <h3 className="mb-4 text-xl font-bold transition-colors duration-300 group-hover:text-brand sm:text-2xl">
                       {service.title}
                     </h3>
-                    <p className="mb-6 text-base leading-relaxed">
-                      {service.description}
+                    <p className="mb-6 text-sm leading-relaxed sm:text-base">
+                      {service.summary}
                     </p>
-                    <ul className="space-y-3 text-base px-4">
+                    <ul className="space-y-3 px-1 text-sm sm:px-4 sm:text-base">
                       {service.points.map((point) => (
                         <li key={point} className="flex gap-3">
                           <span className="mt-0.5 ">✓</span>
@@ -312,10 +234,13 @@ export default function Home() {
                       ))}
                     </ul>
                     <Button
+                      asChild
                       variant="link"
                       className="mt-8 justify-start text-brand text-md transition-all"
                     >
-                      En savoir plus <span>→</span>
+                      <Link href={`/services/${service.slug}`}>
+                        En savoir plus <span>→</span>
+                      </Link>
                     </Button>
                   </div>
                 </div>
@@ -326,13 +251,13 @@ export default function Home() {
       </section>
 
       {/* Facts — 2 ans d'expérience */}
-      <section className="mt-10 bg-white">
-        <div className=" mx-auto grid items-center gap-16 px-6 py-28 lg:grid-cols-2 lg:px-12">
+      <section className="mt-4 bg-white sm:mt-10">
+        <div className="mx-auto grid max-w-7xl items-center gap-12 px-4 py-16 sm:px-6 sm:py-24 lg:grid-cols-2 lg:gap-16 lg:px-8 lg:py-28">
           <Reveal>
             <div className="relative">
-              <span className="absolute -left-5 -top-5 h-28 w-28 rounded-2xl border-4 border-accent/40" />
-              <span className="absolute -bottom-5 -right-5 h-28 w-28 rounded-2xl bg-brand/10" />
-              <div className="group relative aspect-[3/2] overflow-hidden rounded-3xl shadow-2xl">
+              <span className="absolute -left-5 -top-5 hidden h-28 w-28 rounded-2xl border-4 border-accent/40 sm:block" />
+              <span className="absolute -bottom-5 -right-5 hidden h-28 w-28 rounded-2xl bg-brand/10 sm:block" />
+              <div className="group relative aspect-[3/2] overflow-hidden rounded-2xl shadow-2xl sm:rounded-3xl">
                 <Image
                   src="/images/experience.jpg"
                   alt="Afroza Editor en action"
@@ -341,8 +266,8 @@ export default function Home() {
                   className="object-cover transition-transform duration-700 group-hover:scale-105"
                 />
               </div>
-              <div className="absolute -bottom-7 left-8 flex items-center gap-3 rounded-2xl bg-brand px-7 py-5 text-white shadow-xl shadow-brand/30">
-                <span className="text-4xl font-extrabold leading-none">2+</span>
+              <div className="absolute -bottom-6 left-4 flex items-center gap-3 rounded-2xl bg-brand px-5 py-4 text-white shadow-xl shadow-brand/30 sm:left-8 sm:px-7 sm:py-5">
+                <span className="text-3xl font-extrabold leading-none sm:text-4xl">2+</span>
                 <span className="text-xs font-medium leading-tight">
                   années
                   <br />
@@ -356,25 +281,25 @@ export default function Home() {
             <p className="text-sm font-semibold uppercase tracking-[0.25em]">
               Notre parcours
             </p>
-            <h2 className="mt-3 text-4xl font-extrabold sm:text-5xl">
+            <h2 className="mt-3 text-3xl font-extrabold sm:text-5xl">
               2 Ans d&apos;Expérience
             </h2>
             <span className="mt-5 block h-1.5 w-24 rounded-full bg-brand" />
-            <p className="mt-6 max-w-xl text-lg leading-relaxed">
+            <p className="mt-6 max-w-xl text-base leading-relaxed sm:text-lg">
               Une expertise tech jeune mais déterminée, au service de vos projets
               digitaux — de la stratégie jusqu&apos;à la mise en production.
             </p>
-            <div className="mt-10 grid grid-cols-2 gap-6">
+            <div className="mt-10 grid gap-4 sm:grid-cols-2 sm:gap-6">
               {stats.map((stat) => (
                 <div
                   key={stat.label}
-                  className="group flex items-center gap-4 rounded-2xl bg-zinc-50 p-7 ring-1 ring-zinc-100 transition-all duration-300 hover:-translate-y-1 hover:bg-white hover:shadow-xl"
+                  className="group flex items-center gap-4 rounded-2xl bg-zinc-50 p-5 ring-1 ring-zinc-100 transition-all duration-300 hover:-translate-y-1 hover:bg-white hover:shadow-xl sm:p-7"
                 >
-                  <span className="flex h-16 w-16 flex-shrink-0 items-center justify-center rounded-xl bg-brand/10 text-brand transition-all duration-300 group-hover:bg-brand group-hover:text-white">
+                  <span className="flex h-14 w-14 flex-shrink-0 items-center justify-center rounded-xl bg-brand/10 text-brand transition-all duration-300 group-hover:bg-brand group-hover:text-white sm:h-16 sm:w-16">
                     {stat.icon}
                   </span>
                   <div>
-                    <p className="text-4xl font-extrabold text-ink">
+                    <p className="text-3xl font-extrabold text-ink sm:text-4xl">
                       <Counter value={stat.value} suffix={stat.suffix} />
                     </p>
                     <p className="text-sm">{stat.label}</p>
@@ -388,12 +313,12 @@ export default function Home() {
 
       {/* Culture & philosophie — parallax */}
       <section
-        className="relative flex min-h-165 items-center bg-cover bg-fixed bg-center"
+        className="relative flex min-h-[42rem] items-center bg-cover bg-center md:bg-fixed"
         style={{ backgroundImage: "url(/images/notre_philosophie.jpg)" }}
       >
         <div className="absolute inset-0 bg-black/80" />
-        <div className="relative mx-auto grid w-full max-w-7xl items-center gap-14 px-6 py-28 lg:grid-cols-2">
-          <Reveal className="text-white w-118.75">
+        <div className="relative mx-auto grid w-full max-w-7xl items-center gap-10 px-4 py-16 sm:px-6 sm:py-24 lg:grid-cols-2 lg:gap-14 lg:px-8 lg:py-28">
+          <Reveal className="w-full max-w-2xl text-white">
             <p className="text-sm font-semibold uppercase tracking-[0.25em] text-accent">
               Intégrité
             </p>
@@ -408,12 +333,12 @@ export default function Home() {
               réside dans une collaboration authentique et une agilité qui nous
               permettent d&apos;adopter continuellement les nouvelles technologies.
             </p>
-            <a
+            <Link
               href="#services"
               className="mt-8 inline-flex items-center gap-2 rounded-full bg-brand px-7 py-3 text-sm font-semibold text-white shadow-lg shadow-accent/30 transition-all hover:gap-3 hover:bg-accent-dark"
             >
               Explorer nos projets <span>→</span>
-            </a>
+            </Link>
           </Reveal>
 
           <div className="grid gap-5 sm:grid-cols-2">
@@ -440,7 +365,7 @@ export default function Home() {
       {/* Team */}
       <section
         id="team"
-        className="relative overflow-hidden bg-gradient-to-b from-white to-zinc-100 px-6 py-32"
+        className="relative overflow-hidden bg-gradient-to-b from-white to-zinc-100 px-4 py-16 sm:px-6 sm:py-24 lg:py-32"
       >
         <div
           className="pointer-events-none absolute inset-0 opacity-[0.04]"
@@ -453,7 +378,7 @@ export default function Home() {
         <div className="relative mx-auto max-w-7xl">
           <SectionTitle eyebrow="Notre équipe" title="La Meilleure Équipe" />
           <div className="grid grid-cols-1 gap-10 sm:grid-cols-2 lg:grid-cols-4">
-            {team.map((member, i) => (
+            {teamMembers.map((member, i) => (
               <Reveal key={member.name} delay={(i % 4) * 110}>
                 <div className="group relative overflow-hidden rounded-3xl shadow-xl ring-1 ring-black/5 transition-all duration-500 hover:-translate-y-2 hover:shadow-2xl">
                   <div className="relative aspect-[4/5] w-full overflow-hidden">
@@ -492,55 +417,61 @@ export default function Home() {
                           </Link>
                         ))}
                       </div>
+                      <Link
+                        href={`/membres/${member.slug}`}
+                        className="rounded-full bg-white px-4 py-2 text-sm font-bold text-brand"
+                      >
+                      Voir le profil
+                      </Link>
+                    </div>
                     </div>
                   </div>
-                </div>
               </Reveal>
             ))}
           </div>
           <Reveal className="mt-16 text-center">
-            <a
-              href="#"
+            <Link
+              href="/about#team"
               className="inline-block rounded-full border-2 border-brand px-9 py-3.5 text-sm font-semibold text-brand transition-all hover:-translate-y-0.5 hover:bg-brand hover:text-white hover:shadow-lg hover:shadow-brand/30"
             >
               Voir tous les membres
-            </a>
+            </Link>
           </Reveal>
         </div>
       </section>
 
       {/* News / Projets */}
-      <section id="news" className="bg-white container mx-auto h-full">
-        <div className="mx-auto max-w-360 px-6 py-32 lg:px-12">
+      <section id="news" className="bg-white">
+        <div className="mx-auto max-w-7xl px-4 py-16 sm:px-6 sm:py-24 lg:px-8 lg:py-32">
           <SectionTitle eyebrow="Nouveauté" title="Projets Réalisés" />
-          <div className="grid gap-10 lg:grid-cols-2 h-full min-h-[500px]">
+          <div className="grid gap-8 lg:grid-cols-2 lg:gap-10">
             {/* Featured project */}
             {/* <Reveal> */}
-              <article className="group relative  overflow-hidden shadow-xl">
+              <article className="group relative min-h-[28rem] overflow-hidden rounded-2xl shadow-xl sm:min-h-[32rem] lg:rounded-none">
                 <Image
                   src="/news/news1.jpg"
                   alt="Projet vedette Afroza"
                   fill
-                  sizes="(max-width: 1024px)"
-                  className="object-cover transition-transform duration-700 h-full group-hover:scale-110"
+                  sizes="(max-width: 1024px) 100vw, 50vw"
+                  className="h-full object-cover transition-transform duration-700 group-hover:scale-110"
                 />
                 <div className="absolute inset-0 bg-black/70" />
                 <div className="flex flex-col absolute inset-0 justify-between text-white">
-                  <div className="p-10 ">
-                    <span className="inline-block py-1.5 text-md italic font-[400] tracking-wide">
+                  <div className="p-6 sm:p-10">
+                    <span className="inline-block py-1.5 text-sm italic font-[400] tracking-wide sm:text-md">
                       News
                     </span>
                   </div>
 
-                  <div className="p-10">
-                    <span className="inline-block text-md italic font-[400] tracking-wide">
+                  <div className="p-6 sm:p-10">
+                    <span className="inline-block text-sm italic font-[400] tracking-wide sm:text-md">
                       13 juin, 2026
                     </span>
-                    <h3 className="mt-5 text-3xl font-extrabold leading-snug lg:text-4xl">
+                    <h3 className="mt-5 text-2xl font-extrabold leading-snug sm:text-3xl lg:text-4xl">
                     Mise sur pied du prototype final d&apos;AS pour une éventuelle
                     mise en circulation
                   </h3>
-                  <Button className="bg-brand p-8 rounded-full text-md font-semibold mt-4">
+                  <Button className="mt-4 rounded-full bg-brand px-6 py-5 text-sm font-semibold sm:px-8 sm:py-6 sm:text-md">
                       Lire la suite <span>→</span>
                   </Button>
                   </div>
@@ -586,7 +517,7 @@ export default function Home() {
 
                     <div className="flex justify-end w-full">
                       <a
-                        href="#"
+                        href="/news"
                         className=" text-base font-semibold text-brand transition-all hover:gap-2"
                       >
                         Lire la suite <span>→</span>

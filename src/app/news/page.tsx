@@ -1,11 +1,6 @@
 "use client";
 
 import Image from "next/image";
-import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious } from "@/components/ui/carousel";
-import React from "react";
-import Autoplay from "embla-carousel-autoplay"
-import { Card, CardContent } from "@/components/ui/card";
-import CoverflowDemo from "../../components/common/coverflow";
 import BlogProjectRow from "@/components/common/blogFlow";
 
 
@@ -84,7 +79,7 @@ const news = [
 export default function News() {
     return(
         <>
-            <div className="relative w-full flex items-center justify-center my-auto min-h-[640px] h-screen">
+            <div className="relative flex h-[70svh] min-h-[30rem] w-full items-center justify-center sm:min-h-[38rem]">
                 <div className="relative w-full flex items-center justify-center my-auto bg-transparent h-full overflow-hidden">
 
                     {/* Coin haut-gauche : copie du dégradé, découpée en forme de coin arrondi
@@ -109,12 +104,12 @@ export default function News() {
                         className="w-full h-full object-cover"
                     />
                     <div className="absolute inset-0 bg-black/40" />
-                    <div className="absolute text-white text-8xl font-bold">
+                    <div className="absolute px-4 text-center text-4xl font-bold text-white sm:text-6xl lg:text-8xl">
                         <p>Blog</p>
                     </div>
                 </div>
             </div>
-            <div className="flex items-center w-full justify-center">
+            <div className="flex w-full items-center justify-center">
             <BlogProjectRow elements={news}/>
             </div>
         </>
