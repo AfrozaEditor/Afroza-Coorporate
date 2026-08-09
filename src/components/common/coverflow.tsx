@@ -63,9 +63,9 @@ export default function CoverflowDemo() {
   });
 
   return (
-    <div className="w-full min-h-[720px] bg-white flex flex-col items-center justify-center gap-10 py-10">
-      <p className="font-bold text-3xl">Catégories</p>
-      <div className="flex gap-8">
+    <div className="flex min-h-[520px] w-full flex-col items-center justify-center gap-6 bg-white py-8 sm:min-h-[720px] sm:gap-10 sm:py-10">
+      <p className="text-2xl font-bold sm:text-3xl">Catégories</p>
+      <div className="flex max-w-full flex-wrap justify-center gap-4 px-4 sm:gap-8">
         {cards.map((c, i) => (
           <button
             key={c.id}
@@ -84,7 +84,7 @@ export default function CoverflowDemo() {
       {/* w-full explicite ici : c'est CE conteneur qui doit occuper toute
           la largeur, indépendamment de tout ce qu'il y a à l'intérieur. */}
       <div
-        className="relative w-full h-[42rem] flex items-center justify-center overflow-hidden"
+        className="relative flex h-[28rem] w-full items-center justify-center overflow-hidden sm:h-[42rem]"
         style={{ perspective: "1920px" }}
       >
         {/* Le mask-image est appliqué directement sur la couche qui contient
@@ -128,7 +128,7 @@ export default function CoverflowDemo() {
                            flex items-end p-6"
                 style={{
                   width: `${widths[i]}vw`,
-                  height: `${CARD_HEIGHT_REM}rem`,
+                  height: `clamp(18rem, 58vw, ${CARD_HEIGHT_REM}rem)`,
                   backgroundImage: `url(${c.image})`,
                   backgroundSize: "cover",
                   backgroundPosition: "center",

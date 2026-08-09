@@ -32,14 +32,14 @@ function ProjectRow({
 }) {
   return (
     <div
-      className={`flex flex-col md:flex-row gap-10 mx-12  ${
+      className={`mx-4 flex flex-col gap-6 sm:mx-6 md:flex-row md:gap-10 lg:mx-12 ${
         reverse ? "md:flex-row-reverse" : ""
       }`}
     >
       {/* Bloc média */}
       <div 
         onClick={() => onSelect(project)}
-        className="relative w-full  md:w-3/5 aspect-video rounded-2xl overflow-hidden border-4  shadow-md group">
+        className="group relative aspect-video w-full cursor-pointer overflow-hidden rounded-2xl border-4 shadow-md md:w-3/5">
         <Image
           src={project.image}
           alt={project.title}
@@ -61,8 +61,8 @@ function ProjectRow({
 
       {/* Bloc texte */}
       <div className="w-full md:w-2/5 grid grid-cols-1 gap-4">
-        <h3 className="text-4xl font-bold text-gray-900">{project.title}</h3>
-        <p className="text-2xl text-gray-500 leading-relaxed whitespace-pre-line">
+        <h3 className="text-2xl font-bold text-gray-900 sm:text-3xl lg:text-4xl">{project.title}</h3>
+        <p className="whitespace-pre-line text-base leading-7 text-gray-500 sm:text-lg lg:text-2xl lg:leading-relaxed">
           {project.text}
         </p>
 
@@ -121,7 +121,7 @@ export default function ProjectsShowcase({
   const hasMore = visibleCount < projects.length;
 
   return (
-    <div className="flex flex-col gap-20 py-10 w-full items-center max-w-7xl justify-center">
+    <div className="flex w-full max-w-7xl flex-col items-center justify-center gap-12 py-10 sm:gap-16 lg:gap-20">
       {visibleProjects.map((project, i) => (
         <ProjectRow key={project.title} project={project} reverse={i % 2 === 1} onSelect={onSelect} />
       ))}

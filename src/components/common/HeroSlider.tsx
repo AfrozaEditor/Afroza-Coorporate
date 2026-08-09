@@ -2,6 +2,7 @@
 
 import { Button } from "@/components/ui/button";
 import Image from "next/image";
+import Link from "next/link";
 import { useCallback, useEffect, useState } from "react";
 
 type Slide = {
@@ -16,7 +17,7 @@ const slides: Slide[] = [
   {
     image: "/images/slider/bg1.jpg",
     align: "left",
-    title: "Nous battissons cameroun numerique de demain",
+    title: "Nous bâtissons le Cameroun numérique de demain",
     subtitle: "Innovation & Expertise",
     description: "Solutions informatiques performantes pour votre entreprise.",
   },
@@ -38,9 +39,9 @@ const slides: Slide[] = [
 const AUTOPLAY_MS = 6000;
 
 const alignClasses: Record<Slide["align"], string> = {
-  left: "items-start text-left",
+  left: "items-center text-center md:items-start md:text-left",
   center: "items-center text-center",
-  right: "items-end text-right",
+  right: "items-center text-center md:items-end md:text-right",
 };
 
 export default function HeroSlider() {
@@ -61,7 +62,7 @@ export default function HeroSlider() {
   }, [current]);
 
   return (
-    <section className="relative group h-screen min-h-[640px] w-full overflow-hidden">
+    <section className="relative group h-[100svh] min-h-[34rem] w-full overflow-hidden sm:min-h-[40rem]">
       {slides.map((slide, index) => (
         <div
           key={slide.image}
@@ -83,19 +84,19 @@ export default function HeroSlider() {
           <div className="absolute inset-0 bg-gradient-to-b from-black/65 via-black/45 to-black/65" />
 
           <div
-            className={`relative z-10 mx-auto flex h-full max-w-6xl items-center pt-24 ${
+            className={`relative z-10 mx-auto flex h-full max-w-6xl items-center px-4 pt-28 sm:px-6 lg:px-8 ${
               index === current ? "slide-active" : ""
             }`}
           >
             <div
-              className={`slide-anim flex w-full flex-col gap-6 ${alignClasses[slide.align]}`}
+              className={`slide-anim flex w-full flex-col gap-4 sm:gap-6 ${alignClasses[slide.align]}`}
             >
               {slide.subtitle && slide.title && (
-                <p className="flex items-center gap-3 text-lg font-medium uppercase tracking-[0.25em] text-white sm:text-xl">
+                <p className="flex items-center gap-3 text-sm font-medium uppercase tracking-[0.18em] text-white sm:text-lg sm:tracking-[0.25em] lg:text-xl">
                   {slide.subtitle}
                 </p>
               )}
-              <h2 className="max-w-4xl text-4xl font-extrabold uppercase leading-[1.05] text-white drop-shadow-lg sm:text-6xl lg:text-7xl">
+              <h2 className="max-w-4xl text-3xl font-extrabold uppercase leading-[1.08] text-white drop-shadow-lg sm:text-5xl lg:text-7xl">
                 {slide.title ?? slide.subtitle}
               </h2>
               {slide.description && (
@@ -104,20 +105,21 @@ export default function HeroSlider() {
                 </p>
               )}
               <div
-                className={`mt-3 flex flex-wrap gap-4 ${
+                className={`mt-3 flex w-full flex-col gap-3 sm:w-auto sm:flex-row sm:flex-wrap sm:gap-4 ${
                   slide.align === "center" ? "justify-center" : ""
                 }`}
               >
                 <Button
-
-                  className="rounded-full h-full bg-brand px-8 py-3.5 text-md font-semibold text-white shadow-lg shadow-brand/40 transition-all hover:-translate-y-0.5 hover:bg-brand-light"
+                  asChild
+                  className="h-auto rounded-full bg-brand px-8 py-3.5 text-sm font-semibold text-white shadow-lg shadow-brand/40 transition-all hover:-translate-y-0.5 hover:bg-brand-light sm:text-md"
                 >
-                  Nos services
+                  <Link href="/#services">Nos services</Link>
                 </Button>
                 <Button
-                  className="rounded-full border-2 h-full border-white/80 px-8 py-3.5 text-md font-semibold text-white transition-all hover:-translate-y-0.5  hover:text-brand"
+                  asChild
+                  className="h-auto rounded-full border-2 border-white/80 bg-transparent px-8 py-3.5 text-sm font-semibold text-white transition-all hover:-translate-y-0.5 hover:bg-white hover:text-brand sm:text-md"
                 >
-                  Contactez-nous
+                  <Link href="/#contact">Contactez-nous</Link>
                 </Button>
               </div>
             </div>
@@ -129,7 +131,7 @@ export default function HeroSlider() {
         type="button"
         onClick={prev}
         aria-label="Slide précédent"
-        className="invisible absolute left-5 top-1/2 z-20 flex h-14 w-14 p-0 -translate-y-1/2 items-center justify-center bg-white/10 text-white backdrop-blur-sm transition-colors group-hover:visible hover:bg-brand"
+        className="invisible absolute left-5 top-1/2 z-20 hidden h-12 w-12 -translate-y-1/2 items-center justify-center bg-white/10 p-0 text-white backdrop-blur-sm transition-colors group-hover:visible hover:bg-brand md:flex lg:h-14 lg:w-14"
       >
         <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
           <path d="M15 18l-6-6 6-6" />
@@ -139,7 +141,7 @@ export default function HeroSlider() {
         type="button"
         onClick={next}
         aria-label="Slide suivant"
-        className="invisible absolute right-5 top-1/2 z-20 flex h-14 w-14 -translate-y-1/2 items-center justify-center bg-white/10 text-white backdrop-blur-sm transition-colors group-hover:visible hover:bg-brand"
+        className="invisible absolute right-5 top-1/2 z-20 hidden h-12 w-12 -translate-y-1/2 items-center justify-center bg-white/10 text-white backdrop-blur-sm transition-colors group-hover:visible hover:bg-brand md:flex lg:h-14 lg:w-14"
       >
         <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
           <path d="M9 18l6-6-6-6" />

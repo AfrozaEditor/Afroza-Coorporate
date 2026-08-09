@@ -1,10 +1,7 @@
 "use client";
 
 import Image from "next/image";
-import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious } from "@/components/ui/carousel";
-import React, { useState } from "react";
-import Autoplay from "embla-carousel-autoplay"
-import { Card, CardContent } from "@/components/ui/card";
+import { useState } from "react";
 import CoverflowDemo from "../../components/common/coverflow";
 import { cards1 } from "@/config/social";
 import { Button } from "@/components/ui/button";
@@ -23,12 +20,25 @@ const projects: Project[] = [
     isVideo: true,
     techIcons: [
       { name: "Laravel", icon: "/icons/laravel.svg" },
+      { name: "React", icon: "/icons/react.svg" },
+      { name: "Typescript", icon: "/icons/typescript-original.svg" },
+      { name: "Php", icon: "/icons/php-original.svg" },
       { name: "Tailwind", icon: "/icons/tailwindcss.svg" },
       { name: "Docker", icon: "/icons/docker.svg" },
       { name: "Postgres", icon: "/icons/postgresql.svg" },
       // ...
     ],
-    screenshots: ["/features/projects/am/screen1.png", "/features/projects/am/screen2.png", "/features/projects/am/screen3.png"],
+    screenshots: [
+      "/features/projects/am/screen1.png",
+      "/features/projects/am/screen2.png",
+      "/features/projects/am/screen3.png",
+      "/features/projects/am/screen4.png",
+      "/features/projects/am/screen5.png",
+      "/features/projects/am/screen6.png",
+      "/features/projects/am/screen7.png",
+      "/features/projects/am/screen8.png",
+      "/features/projects/am/screen9.png",
+    ],
     // avatars: ["/avatar1.jpg", "/avatar2.jpg", "/avatar3.jpg"],:
     link:'https://afrozamarketplace.app'
   },
@@ -39,6 +49,16 @@ const projects: Project[] = [
     logo: "/features/projects/logo_al.png",
     image: "/features/projects/al.png",
     isVideo: true,
+    techIcons: [
+      { name: "Laravel", icon: "/icons/laravel.svg" },
+      { name: "React", icon: "/icons/react.svg" },
+      { name: "Typescript", icon: "/icons/typescript-original.svg" },
+      { name: "Php", icon: "/icons/php-original.svg" },
+      { name: "Tailwind", icon: "/icons/tailwindcss.svg" },
+      { name: "Docker", icon: "/icons/docker.svg" },
+      { name: "Postgres", icon: "/icons/postgresql.svg" },
+      // ...
+    ],
     link:'https://afrozamarketplace.app'
   },
   {
@@ -48,6 +68,17 @@ const projects: Project[] = [
     logo: "/features/projects/logo_aps.png",
     image: "/features/projects/aps.png",
     isVideo: true,
+    techIcons: [
+      { name: "Phoenix", icon: "/icons/phoenix-original.svg" },
+      { name: "Elixir", icon: "/icons/elixir-original.svg" },
+      { name: "React native", icon: "/icons/reactnative-original.svg" },
+      { name: "Typescript", icon: "/icons/typescript-original.svg" },
+      { name: "Python", icon: "/icons/python-original.svg" },
+      { name: "Tailwind", icon: "/icons/tailwindcss.svg" },
+      { name: "Docker", icon: "/icons/docker.svg" },
+      { name: "Postgres", icon: "/icons/postgresql.svg" },
+      // ...
+    ],
   },
   {
     title: "Afroza Editor",
@@ -70,16 +101,12 @@ const projects: Project[] = [
 ];
 
 export default function Features() {
-    const plugin = React.useRef(
-    Autoplay({ delay: 2000, stopOnInteraction: true })
-  )
-
     // Le projet actuellement affiché dans le popup (null = popup fermé)
     const [selectedProject, setSelectedProject] = useState<Project | null>(null);
 
     return(
         <>
-            <div className="relative w-full flex items-center justify-center my-auto min-h-[640px] h-screen">
+            <div className="relative flex h-[70svh] min-h-[30rem] w-full items-center justify-center sm:min-h-[38rem]">
               <div className="relative w-full flex items-center justify-center my-auto bg-transparent h-full overflow-hidden">
                   <Image
                       src="/features/project.jpg"
@@ -91,21 +118,21 @@ export default function Features() {
                       src="/features/dart.png"
                       alt=""
                       fill
-                      className="w-full h-full flex justify-end"
+                      className="h-full w-full object-contain object-right opacity-80"
                   />
                   <div className="absolute inset-0 bg-black/40" />
-                  <div className="absolute text-white text-8xl font-bold">
+                  <div className="absolute px-4 text-center text-4xl font-bold text-white sm:text-6xl lg:text-8xl">
                       <p>Nos Projets</p>
                   </div>
               </div>
             </div>
             <div className="w-full overflow-hidden">
-              <div className="flex w-[200%] animate-marquee hover:[animation-play-state:paused]">
-                <div className="flex w-1/2 gap-6">
+              <div className="flex w-max animate-marquee hover:[animation-play-state:paused]">
+                <div className="flex gap-6 pr-6">
                   {projects.map((project) => (
                     <div
                       key={project.title}
-                      className="group relative flex h-116 w-[calc(20%-1.125rem)] shrink-0 items-center justify-center overflow-hidden"
+                      className="group relative flex h-32 w-40 shrink-0 items-center justify-center overflow-hidden sm:h-48 sm:w-56 lg:h-72 lg:w-72"
                     >
                       <Image
                         src={project.logo ?? ""}
@@ -119,11 +146,11 @@ export default function Features() {
                   ))}
                 </div>
 
-                <div className="flex w-1/2 gap-6">
+                <div className="flex gap-6 pr-6">
                   {projects.map((project) => (
                     <div
                       key={`${project.title}-dup`}
-                      className="group relative flex h-116 w-[calc(20%-1.125rem)] shrink-0 items-center justify-center overflow-hidden"
+                      className="group relative flex h-32 w-40 shrink-0 items-center justify-center overflow-hidden sm:h-48 sm:w-56 lg:h-72 lg:w-72"
                     >
                       <Image
                         src={project.logo ?? ""}
@@ -139,8 +166,8 @@ export default function Features() {
               </div>
             </div>
             <div className="flex flex-col items-center justify-center">
-              <div className="flex gap-8">
-              {cards1.map((c, i) => (
+              <div className="flex max-w-full flex-wrap justify-center gap-3 px-4 sm:gap-8">
+              {cards1.map((c) => (
                 <Button
                   key={c.id}
                   variant={"link"}
