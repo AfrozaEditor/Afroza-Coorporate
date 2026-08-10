@@ -69,7 +69,7 @@ function TeamMemberCard({
       <div className="flex flex-1 flex-col p-5">
         <h3 className="text-lg font-black text-ink">{member.name}</h3>
         <p className="mt-1 text-sm font-bold text-brand">{member.role}</p>
-        <p className="mt-3 line-clamp-3 text-sm leading-6 text-muted">
+        <p className="mt-3 line-clamp-3 text-sm leading-6  ">
           {member.headline}
         </p>
 
@@ -235,7 +235,7 @@ export default function TeamShowcase({ members }: TeamShowcaseProps) {
                 return (
                   <li
                     key={member.slug}
-                    className="absolute left-1/2 top-1/2 [backface-visibility:hidden]"
+                    className="absolute left-1/2 top-1/2 "
                     style={{
                       width: `${CARD_WIDTH_PX}px`,
                       height: `${CARD_HEIGHT_PX}px`,

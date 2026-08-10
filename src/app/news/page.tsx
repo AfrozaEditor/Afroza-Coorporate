@@ -79,7 +79,7 @@ const news = [
 export default function News() {
     return(
         <>
-            <div className="relative flex h-[70svh] min-h-[30rem] w-full items-center justify-center sm:min-h-[38rem]">
+            <div className="relative flex h-[100svh] min-h-[34rem] w-full items-center justify-center sm:min-h-[38rem]">
                 <div className="relative w-full flex items-center justify-center my-auto bg-transparent h-full overflow-hidden">
 
                     {/* Coin haut-gauche : copie du dégradé, découpée en forme de coin arrondi

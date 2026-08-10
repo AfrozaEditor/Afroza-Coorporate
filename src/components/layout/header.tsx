@@ -525,7 +525,7 @@ export default function Header() {
                           <h3 className="mt-3 text-base font-black text-ink group-hover:text-brand sm:text-lg">
                             {item.title}
                           </h3>
-                          <p className="mt-1 text-sm leading-6 text-muted">
+                          <p className="mt-1 text-sm leading-6  ">
                             {item.description}
                           </p>
                         </div>
@@ -539,7 +539,7 @@ export default function Header() {
               ) : (
                 <div className="rounded-2xl bg-zinc-50 px-5 py-8 text-center">
                   <p className="font-bold text-ink">Aucun résultat trouvé</p>
-                  <p className="mt-2 text-sm text-muted">
+                  <p className="mt-2 text-sm  ">
                     Essayez avec “service”, “tarifs”, “mobile”, “design” ou le nom
                     d'un membre.
                   </p>

@@ -19,7 +19,7 @@ const commitments = [
 export default function ServicesPage() {
   return (
     <main className="bg-white text-ink">
-      <section className="relative flex min-h-[32rem] items-center overflow-hidden px-4 pb-16 pt-36 text-white sm:min-h-[40rem] sm:px-6 sm:pt-44 lg:px-8">
+      <section className="relative flex h-[100svh] min-h-[34rem] items-center overflow-hidden px-4 pb-16 pt-36 text-white sm:min-h-[40rem] sm:px-6 sm:pt-44 lg:px-8">
         <Image
           src="/images/services/service1.jpg"
           alt="Services Afroza Editor"
@@ -78,7 +78,7 @@ export default function ServicesPage() {
                       {service.category}
                     </p>
                     <h3 className="mt-2 text-2xl font-black">{service.title}</h3>
-                    <p className="mt-4 text-sm leading-7 text-muted">
+                    <p className="mt-4 text-sm leading-7  ">
                       {service.summary}
                     </p>
                     <div className="mt-6 grid gap-3">

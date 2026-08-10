@@ -175,7 +175,7 @@ export default async function MemberDetailPage({ params }: MemberPageProps) {
                   <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-brand text-sm font-black text-white">
                     {index + 1}
                   </span>
-                  <p className="text-base leading-7 text-muted">{highlight}</p>
+                  <p className="text-base leading-7  ">{highlight}</p>
                 </div>
               </Reveal>
             ))}

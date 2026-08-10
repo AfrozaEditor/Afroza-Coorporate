@@ -155,7 +155,7 @@ function SectionTitle({ eyebrow, title }: { eyebrow: string; title: string }) {
 
 export default function Home() {
   return (
-    <div className="flex w-full flex-1 flex-col bg-white text-ink">
+    <div className="flex w-full flex-1 overflow-x-hidden flex-col bg-white text-ink">
       <div className="relative">
         <HeroSlider />
       </div>
@@ -378,7 +378,7 @@ export default function Home() {
         <div className="relative mx-auto max-w-7xl">
           <SectionTitle eyebrow="Notre équipe" title="La Meilleure Équipe" />
           <div className="grid grid-cols-1 gap-10 sm:grid-cols-2 lg:grid-cols-4">
-            {teamMembers.map((member, i) => (
+            {teamMembers.slice(0, 8).map((member, i) => (
               <Reveal key={member.name} delay={(i % 4) * 110}>
                 <div className="group relative overflow-hidden rounded-3xl shadow-xl ring-1 ring-black/5 transition-all duration-500 hover:-translate-y-2 hover:shadow-2xl">
                   <div className="relative aspect-[4/5] w-full overflow-hidden">
@@ -481,7 +481,7 @@ export default function Home() {
             {/* </Reveal> */}
 
             {/* Secondary posts */}
-            <div className="flex flex-col-1 gap-10">
+            <div className="flex flex-col lg:flex-row gap-10">
               {[
                 {
                   id: 1,

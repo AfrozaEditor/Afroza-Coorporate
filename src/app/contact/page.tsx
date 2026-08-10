@@ -63,7 +63,7 @@ export default function ContactPage() {
                     {item.icon}
                   </span>
                   <div>
-                    <p className="text-sm text-muted">{item.label}</p>
+                    <p className="text-sm  ">{item.label}</p>
                     <p className="font-bold">{item.value}</p>
                   </div>
                 </div>

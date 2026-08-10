@@ -147,7 +147,7 @@ export default async function ServiceDetailPage({ params }: ServicePageProps) {
                   <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-brand text-sm font-black text-white">
                     {index + 1}
                   </span>
-                  <p className="leading-7 text-muted">{step}</p>
+                  <p className="leading-7  ">{step}</p>
                 </div>
               ))}
             </div>
@@ -219,7 +219,7 @@ export default async function ServiceDetailPage({ params }: ServicePageProps) {
                   <div className="p-6">
                     <p className="text-sm font-bold text-brand">{item.category}</p>
                     <h3 className="mt-2 text-xl font-black">{item.title}</h3>
-                    <p className="mt-3 text-sm leading-7 text-muted">
+                    <p className="mt-3 text-sm leading-7  ">
                       {item.summary}
                     </p>
                   </div>
