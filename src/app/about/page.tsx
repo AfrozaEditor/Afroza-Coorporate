@@ -18,7 +18,7 @@ const stats = [
   { value: "2024", label: "Lancement d'Afroza Editor" },
   { value: "3+", label: "Produits et projets accompagnés" },
   { value: "95%", label: "Objectif de satisfaction client" },
-  { value: "8", label: "Profils complémentaires" },
+  { value: teamMembers.length , label: "Profils complémentaires" },
 ];
 
 const values = [
@@ -70,7 +70,7 @@ const steps = [
 export default function About() {
   return (
     <main className="bg-white text-ink">
-      <section className="relative flex min-h-[34rem] items-center overflow-hidden px-4 pb-16 pt-36 text-white sm:min-h-[42rem] sm:px-6 sm:pt-44 lg:px-8">
+      <section className="relative flex h-[100svh] min-h-[34rem] items-center overflow-hidden px-4 pb-16 pt-36 text-white sm:min-h-[42rem] sm:px-6 sm:pt-44 lg:px-8">
         <Image
           src="/images/footer-bg.jpg"
           alt="Equipe Afroza Editor"
@@ -140,7 +140,7 @@ export default function About() {
               Accélérer la transformation digitale avec des solutions
               accessibles et bien pensées.
             </h2>
-            <p className="mt-6 text-base leading-8 text-muted sm:text-lg">
+            <p className="mt-6 text-base leading-8  sm:text-lg">
               Nous aidons les organisations à passer d'une idée floue à un
               produit exploitable: une plateforme, une application, une identité
               visuelle, une campagne ou un système interne qui simplifie le
@@ -200,7 +200,7 @@ export default function About() {
                     {value.icon}
                   </span>
                   <h3 className="mt-6 text-xl font-black">{value.title}</h3>
-                  <p className="mt-3 text-sm leading-7 text-muted">
+                  <p className="mt-3 text-sm leading-7 ">
                     {value.text}
                   </p>
                 </div>
@@ -230,7 +230,7 @@ export default function About() {
                   </span>
                   <div>
                     <h3 className="text-xl font-black">{step.title}</h3>
-                    <p className="mt-2 text-sm leading-7 text-muted">
+                    <p className="mt-2 text-sm leading-7 ">
                       {step.text}
                     </p>
                   </div>

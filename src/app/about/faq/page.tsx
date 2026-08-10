@@ -98,7 +98,7 @@ export default function FaqPage() {
               <Reveal key={item.question} delay={index * 60}>
                 <article className="rounded-2xl bg-zinc-50 p-5 ring-1 ring-zinc-100 sm:p-6">
                   <h3 className="text-lg font-black sm:text-xl">{item.question}</h3>
-                  <p className="mt-3 text-sm leading-7 text-muted sm:text-base">
+                  <p className="mt-3 text-sm leading-7   sm:text-base">
                     {item.answer}
                   </p>
                 </article>

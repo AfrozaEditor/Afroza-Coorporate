@@ -1,4 +1,4 @@
-import { ChevronDown, Menu, Play, Share2, User } from "lucide-react";
+import { ChevronDown, ExternalLink, Menu, Play, Share, Share2, User } from "lucide-react";
 import Image from "next/image";
 import { useState } from "react";
 
@@ -30,13 +30,15 @@ function MediaBlock({ item }: { item: Element }) {
   // ne domine tout l'écran (le bug qu'on vient de corriger).
   if (item.images.length === 1) {
     return (
-      <div className="group relative aspect-[4/3] w-full overflow-hidden rounded-2xl shadow-md">
+      <div className="relative w-full h-full flex justify-center overflow-hidden shadow-md group">
         <Image
           src={item.images[0]}
           alt={item.title}
-          fill
+          width={0}
+          height={0}
           sizes="(max-width: 1024px) 100vw, 50vw"
-          className="object-cover"
+          className="w-full h-full object-cover"
+          style={{height: 'auto'}}
         />
         {item.isVideo && (
           <div className="absolute inset-0 flex items-center justify-center bg-black/10 group-hover:bg-black/20 transition-colors">
@@ -52,11 +54,11 @@ function MediaBlock({ item }: { item: Element }) {
   // Deux images → empilées verticalement, chacune avec sa propre hauteur fixe
   // (comme le bloc "Félicitation AFROZA EDITOR" de la maquette)
   return (
-    <div className="grid w-full gap-4">
+    <div className="flex flex-col gap-4 w-full h-full">
       {item.images.map((src, i) => (
         <div
           key={i}
-          className="group relative aspect-video w-full overflow-hidden rounded-2xl shadow-md"
+          className="relative w-full rounded-xl h-1/2 shadow-md group"
         >
           <Image
             src={src}
@@ -89,7 +91,7 @@ function BlogProjectRow({
 }) {
   return (
     <div
-      className={`mx-4 flex flex-col gap-6 sm:mx-6 md:flex-row md:gap-10 lg:mx-12 ${
+      className={`flex flex-col md:flex-row gap-10 mx-12 ${
         reverse ? "md:flex-row-reverse" : ""
       }`}
     >
@@ -101,10 +103,10 @@ function BlogProjectRow({
       {/* Bloc texte */}
       <div className="w-full md:w-2/5 flex flex-col justify-between ">
       <div>
-        <h3 className="text-2xl font-bold text-gray-900 sm:text-3xl lg:text-4xl">{element.title}</h3>
-        <h3 className="text-base font-medium italic text-gray-900 sm:text-xl">{element.date}</h3>
+        <h3 className="text-4xl font-bold text-gray-900">{element.title}</h3>
+        <h3 className="text-xl font-medium italic text-gray-900">{element.date}</h3>
       </div>
-        <p className="whitespace-pre-line text-base leading-7 text-gray-500 sm:text-lg lg:text-2xl lg:leading-relaxed">
+        <p className="text-2xl text-gray-500 leading-relaxed whitespace-pre-line">
           {element.text}
         </p>
 
@@ -157,9 +159,9 @@ export default function ProjectsShowcase({
   const hasMore = visibleCount < elements.length;
 
   return (
-    <div className="flex w-full max-w-7xl flex-col items-center justify-center gap-12 py-10 sm:gap-16 lg:gap-20">
-      <p className="text-2xl font-bold sm:text-3xl">Catégories</p>
-      <div className="flex max-w-full flex-wrap justify-center gap-4 sm:gap-8">
+    <div className="flex flex-col gap-20 py-10 w-full max-w-7xl items-center justify-center">
+      <p className="font-bold text-3xl">Catégories</p>
+      <div className="flex gap-8">
         {cards.map((c, i) => (
           <button
             key={c.id}

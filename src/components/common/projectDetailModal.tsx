@@ -37,9 +37,9 @@ function ProjectGallery({ project }: { project: Project }) {
   });
 
   return (
-    <div className="relative border-t border-black/10 bg-[linear-gradient(180deg,#f8f8f8_0%,#d7d7d7_100%)] px-2 py-5 sm:px-4 sm:py-6">
+    <div className="relative bg-[linear-gradient(180deg,#f8f8f8_0%,#d7d7d7_100%)] px-2 py-5 sm:px-4 sm:py-6">
       <div
-        className="relative mx-auto h-[20rem] w-full max-w-6xl overflow-hidden rounded-b-3xl sm:h-[22rem] lg:h-[24rem]"
+        className="relative mx-auto h-80 w-full max-w-6xl overflow-hidden rounded-b-3xl"
         style={{ perspective: "1200px" }}
       >
         {visibleSlides.map(({ src, index, offset }) => {
@@ -56,7 +56,7 @@ function ProjectGallery({ project }: { project: Project }) {
               type="button"
               aria-label={`Afficher la capture ${index + 1}`}
               onClick={() => goTo(index)}
-              className="absolute left-1/2 top-1/2 h-64 w-52 origin-center overflow-hidden bg-white shadow-[0_24px_32px_rgba(0,0,0,0.38)] ring-1 ring-black/10 transition-all duration-500 ease-out sm:h-72 sm:w-60 lg:h-80 lg:w-64"
+              className="absolute left-1/2 top-1/2 h-64 w-52 origin-center overflow-hidden bg-transparent transition-all duration-500 ease-out sm:h-72 sm:w-60 lg:h-80 lg:w-64"
               style={{
                 opacity,
                 zIndex: 30 - distance,
@@ -71,7 +71,7 @@ function ProjectGallery({ project }: { project: Project }) {
                 alt={`${project.title} capture ${index + 1}`}
                 fill
                 sizes="(max-width: 640px) 208px, (max-width: 1024px) 240px, 256px"
-                className="object-contain"
+                className="object-contain rotate-90"
               />
             </button>
           );
@@ -125,24 +125,24 @@ export default function ProjectDetailModal({
 
   return (
     <div
-      className="fixed inset-0 z-50 flex items-center justify-center bg-black/40 p-3 sm:p-4"
+      className="fixed inset-0 z-50 flex items-center justify-center bg-black/40 backdrop-blur-sm p-4"
       onClick={onClose}
     >
         <div className="max-h-[calc(100svh-1.5rem)] w-full max-w-6xl overflow-y-auto rounded-3xl bg-[#FFFCFC] p-3 sm:max-h-[calc(100svh-2rem)] sm:p-5">
           <div
             onClick={(e) => e.stopPropagation()}
-            className="relative w-full overflow-hidden rounded-3xl bg-black/15 shadow-2xl"
+            className="relative w-full rounded-3xl bg-black/15 shadow-2xl"
           >
         <button
           onClick={onClose}
           aria-label="Fermer"
-          className="absolute right-4 top-4 z-30 flex h-9 w-9 items-center justify-center rounded-full bg-white shadow transition-colors hover:bg-gray-100 md:-top-4 md:right-1/2"
+          className="absolute border-1 right-4 top-4 z-30 flex h-9 w-9 items-center justify-center rounded-full bg-white shadow transition-colors hover:bg-gray-100 md:-top-4 md:right-1/2"
         >
           <LogIn className="h-4 w-4 text-gray-700 rotate-180" />
         </button>
 
         <div className="relative flex flex-col md:min-h-[31rem] md:flex-row">
-          <div className="flex w-full flex-col gap-4 p-5 sm:p-8 md:w-1/2">
+          <div className="flex w-full flex-col justify-between gap-4 p-5 sm:p-8 md:w-1/2">
             <div className="flex items-center gap-3">
               {project.logo && (
                 <Image src={project.logo} alt="" width={48} height={48} />
@@ -207,13 +207,13 @@ export default function ProjectDetailModal({
           </div>
 
           {/* Grande image de couverture à droite, fondue dans le fond gris */}
-          <div className="relative h-64 w-full md:h-auto md:w-1/2">
+          <div className="relative h-50 w-full md:h-auto md:w-1/2">
             <Image
               src={project.image}
               alt=""
               fill
               sizes="(max-width: 768px) 100vw, 50vw"
-              className="object-cover"
+              className="object-cover rounded-tr-2xl"
             />
             <div className="absolute inset-0 bg-gradient-to-t from-neutral-100/90 via-transparent to-transparent md:bg-gradient-to-l md:from-transparent md:via-transparent md:to-neutral-100" />
           </div>

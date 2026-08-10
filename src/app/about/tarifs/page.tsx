@@ -94,7 +94,7 @@ export default function PricingPage() {
                 <p className="mt-5 text-4xl font-black">{item.price}</p>
                 <p
                   className={`mt-4 text-sm leading-7 ${
-                    item.featured ? "text-white/75" : "text-muted"
+                    item.featured ? "text-white/75" : " "
                   }`}
                 >
                   {item.description}
@@ -138,7 +138,7 @@ export default function PricingPage() {
             {billingNotes.map((note, index) => (
               <Reveal key={note} delay={index * 90}>
                 <div className="rounded-2xl bg-white p-5 ring-1 ring-zinc-100 sm:p-6">
-                  <p className="text-base leading-7 text-muted">{note}</p>
+                  <p className="text-base leading-7  ">{note}</p>
                 </div>
               </Reveal>
             ))}
@@ -165,7 +165,7 @@ export default function PricingPage() {
                 >
                   <p className="text-sm font-bold text-brand">{service.category}</p>
                   <h3 className="mt-3 text-xl font-black">{service.title}</h3>
-                  <p className="mt-3 text-sm leading-7 text-muted">
+                  <p className="mt-3 text-sm leading-7  ">
                     {service.summary}
                   </p>
                   <span className="mt-6 inline-flex items-center gap-2 text-sm font-bold text-brand">

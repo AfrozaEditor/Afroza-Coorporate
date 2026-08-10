@@ -84,7 +84,7 @@ export default function HeroSlider() {
           <div className="absolute inset-0 bg-gradient-to-b from-black/65 via-black/45 to-black/65" />
 
           <div
-            className={`relative z-10 mx-auto flex h-full max-w-6xl items-center px-4 pt-28 sm:px-6 lg:px-8 ${
+            className={`relative z-10 mx-auto flex h-full max-w-6xl items-center pt-28 ${
               index === current ? "slide-active" : ""
             }`}
           >
