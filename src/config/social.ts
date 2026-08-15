@@ -9,6 +9,7 @@ export const socials = [
   { id: "instagram", name: "Instagram", href: "https://instagram.com/votrecompte" },
   { id: "github", name: "Github", href: "https://github.com/AfrozaEditor" },
   { id: "tiktok", name: "TikTok", href: "https://www.tiktok.com/@afrozaeditor" },
+  { id: "whatsapp", name: "Whatsapp", href: "https://www.tiktok.com/@afrozaeditor" },
 ];
 
 
