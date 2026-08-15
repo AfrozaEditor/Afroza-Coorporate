@@ -21,6 +21,7 @@ export type TeamMember = {
 const defaultSocials: TeamSocial[] = [
   { id: "linkedin", name: "LinkedIn", href: "https://linkedin.com/in/votreprofil" },
   { id: "facebook", name: "Facebook", href: "https://facebook.com/votrepage" },
+  { id: "whatsapp", name: "Whatsapp", href: "https://www.tiktok.com/@afrozaeditor" },
   { id: "github", name: "Github", href: "https://github.com/AfrozaEditor" },
 ];
 
@@ -160,7 +161,7 @@ export const teamMembers: TeamMember[] = [
     slug: "franck-azab",
     name: "Franck Azab",
     role: "Dev Mobile",
-    photo: "/images/team/team1.jpg",
+    photo: "/images/team/team8.jpg",
     headline: "Applications mobiles et expériences multiplateformes.",
     bio:
       "Franck se concentre sur les interfaces mobiles et l'expérience utilisateur en situation réelle. Il transforme les parcours en écrans fluides, accessibles et pratiques.",

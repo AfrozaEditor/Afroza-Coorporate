@@ -205,14 +205,15 @@ export default function Home() {
             {services.map((service, i) => (
               <Reveal key={service.title} delay={i * 130}>
                 <div className="group flex h-full flex-col overflow-hidden bg-transparent transition-all duration-500 hover:-translate-y-3">
-                  <div className="relative aspect-[4/3] w-full overflow-hidden">
+                  <div className="relative w-full overflow-hidden">
                     <Image
                       src={service.image}
                       alt={service.title}
                       width={800}
                       height={600}
                       sizes="(max-width: 1024px) 100vw, 33vw"
-                      className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-110"
+                      className="object-cover transition-transform duration-700 group-hover:scale-110"
+                      style={{height: 'auto'}}
                     />
                   </div>
                   <div className="relative flex flex-1 flex-col pt-6 sm:pt-8">
