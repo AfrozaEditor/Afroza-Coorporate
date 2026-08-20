@@ -22,8 +22,8 @@ export default function Footer() {
           <div className="mx-auto grid gap-px px-6 py-10 sm:grid-cols-3 bg-[#0F6562] ">
             {[
               { icon: <Pin />, title: "Head Office", text: "CRADAT, Yaoundé — Cameroun" },
-              { icon: <Phone />, title: "Call Us", text: "+237 659 974 106" },
-              { icon: <Mail />, title: "Mail Us", text: "Afrozaeditor@yahoo.com" },
+              { icon: <Phone />, title: "Call Us", text: "+237 656 921 921" },
+              { icon: <Mail />, title: "Mail Us", text: "afroza.editor@gmail.com" },
             ].map((box, i) => (
               <Reveal key={box.title} delay={i * 120}>
                 <div className="group flex items-center justify-center gap-4 px-4 text-center sm:text-left">
@@ -123,7 +123,7 @@ export default function Footer() {
           </Reveal>
         </div>
         <div className="relative border-t border-white/10 py-5 text-center text-xs text-white/60">
-          Copyright © 2026 Afroza Editor. Tous droits réservés.
+          AFROZA Editor © 2026. Advanced Framework for Resilent Open Zone for Africa
         </div>
       </footer>
     );
