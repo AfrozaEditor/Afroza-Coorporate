@@ -278,11 +278,11 @@ export default function Header() {
             <ul className="flex items-center gap-7 text-sm">
               <li className="flex items-center gap-2">
                 <span className="text-accent"><Phone size={14} /></span>
-                +237 659 974 106
+                +237 656 921 921
               </li>
               <li className="flex items-center gap-2">
                 <span className="text-accent"><Mail size={14} /></span>
-                Afrozaeditor@yahoo.com
+                afroza.editor@gmail.com
               </li>
               <li className="flex items-center gap-2">
                 <span className="text-accent"><MapPin size={14} /></span>
@@ -447,11 +447,11 @@ export default function Header() {
         <div className="mt-6 space-y-3 border-t border-white/10 pt-6">
           <a href="tel:+237659974106" className="flex items-center gap-2 text-sm text-white/80">
             <span className="text-accent"><Phone size={14} /></span>
-            +237 659 974 106
+            +237 656 921 921
           </a>
           <a href="mailto:Afrozaeditor@yahoo.com" className="flex items-center gap-2 text-sm text-white/80">
             <span className="text-accent"><Mail size={14} /></span>
-            Afrozaeditor@yahoo.com
+            afroza.editor@gmail.com
           </a>
           <div className="flex items-center gap-2 text-sm text-white/80">
             <span className="text-accent"><MapPin size={14} /></span>
