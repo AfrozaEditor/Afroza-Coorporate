@@ -4,7 +4,7 @@ import { cn } from "@/lib/utils";
 import Header from "@/components/layout/header";
 import Footer from "@/components/layout/footer";
 
-const siteUrl = "https://afroza-editor.com"; // remplace par ton vrai domaine
+const siteUrl = "https://afroza-editor.tech"; // remplace par ton vrai domaine
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
@@ -16,6 +16,9 @@ export const metadata: Metadata = {
     "Afroza Editor conçoit des solutions web, mobiles et digitales innovantes pour les entreprises au Cameroun.",
   keywords: [
     "Afroza Editor",
+    "karel ondo jean",
+    "bell aqil",
+    "jedidia kamdem souop",
     "solutions numériques Cameroun",
     "applications web Cameroun",
     "applications mobiles Cameroun",
@@ -88,7 +91,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="fr" className="h-full antialiased">
+    <html lang="fr" className="h-full antialiased overflow-x-hidden">
       <body className="min-h-full flex flex-col overflow-x-hidden">
         <Header/>
         {children}
