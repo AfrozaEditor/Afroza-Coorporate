@@ -21,15 +21,34 @@ export async function generateMetadata({
   const { slug } = await params;
   const member = getTeamMemberBySlug(slug);
 
+
+
   if (!member) {
     return {
       title: "Membre introuvable — Afroza Editor",
     };
   }
 
+  const imageUrl = `https://afroza-editor.tech${member.photo}`;
+
   return {
     title: `${member.name} — ${member.role} | Afroza Editor`,
     description: member.headline,
+
+    // Open Graph — utilisé par WhatsApp, Facebook, LinkedIn, Telegram, etc.
+  openGraph: {
+    title: member.name,
+    description: member.bio,
+    url: 'https://afroza-editor.tech/membres/' + member.slug,
+    images: [
+      {
+        url: imageUrl, // idéalement 1200x630
+        width: 1200,
+        height: 630,
+        alt: member.name,
+      },
+    ],
+  },
   };
 }
 
