@@ -21,8 +21,6 @@ export async function generateMetadata({
   const { slug } = await params;
   const member = getTeamMemberBySlug(slug);
 
-
-
   if (!member) {
     return {
       title: "Membre introuvable — Afroza Editor",
@@ -30,25 +28,35 @@ export async function generateMetadata({
   }
 
   const imageUrl = `https://afroza-editor.tech${member.photo}`;
+  const pageUrl = `https://afroza-editor.tech/membres/${member.slug}`;
 
   return {
     title: `${member.name} — ${member.role} | Afroza Editor`,
     description: member.headline,
 
-    // Open Graph — utilisé par WhatsApp, Facebook, LinkedIn, Telegram, etc.
-  openGraph: {
-    title: member.name,
-    description: member.bio,
-    url: 'https://afroza-editor.tech/membres/' + member.slug,
-    images: [
-      {
-        url: imageUrl, // idéalement 1200x630
-        width: 1200,
-        height: 630,
-        alt: member.name,
-      },
-    ],
-  },
+    openGraph: {
+      type: "profile",
+      locale: "fr_FR",
+      siteName: "Afroza Editor",
+      title: `${member.name} — ${member.role}`,
+      description: member.bio,
+      url: pageUrl,
+      images: [
+        {
+          url: imageUrl,
+          width: 1200, // remplace par les vraies dimensions du fichier si différentes
+          height: 630,
+          alt: member.name,
+        },
+      ],
+    },
+
+    twitter: {
+      card: "summary_large_image",
+      title: `${member.name} — ${member.role}`,
+      description: member.bio,
+      images: [imageUrl],
+    },
   };
 }
 
