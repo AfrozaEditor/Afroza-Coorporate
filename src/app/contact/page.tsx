@@ -7,12 +7,12 @@ const contactItems = [
   {
     icon: <Phone size={24} />,
     label: "Téléphone",
-    value: "+237 659 974 106",
+    value: "+237 656 921 921",
   },
   {
     icon: <Mail size={24} />,
     label: "Email",
-    value: "Afrozaeditor@yahoo.com",
+    value: "afrozaeditor@yahoo.com",
   },
   {
     icon: <MapPin size={24} />,

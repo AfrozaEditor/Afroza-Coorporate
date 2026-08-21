@@ -22,8 +22,8 @@ export default function Footer() {
           <div className="mx-auto grid max-w-6xl -mt-25  gap-px overflow-hidden rounded-2xl bg-[#0F6562] sm:grid-cols-3 sm:rounded-full">
             {[
               { icon: <Pin />, title: "Head Office", text: "CRADAT, Yaoundé — Cameroun" },
-              { icon: <Phone />, title: "Call Us", text: "+237 659 974 106" },
-              { icon: <Mail />, title: "Mail Us", text: "Afrozaeditor@yahoo.com" },
+              { icon: <Phone />, title: "Call Us", text: "+237 656 921 921" },
+              { icon: <Mail />, title: "Mail Us", text: "afroza.editor@gmail.com" },
             ].map((box, i) => (
               <Reveal key={box.title} delay={i * 120}>
                 <div className="group flex items-center gap-4 px-5 py-6 text-left sm:justify-center sm:px-4 sm:text-left">
