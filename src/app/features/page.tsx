@@ -122,7 +122,7 @@ export default function Features() {
                   />
                   <div className="absolute inset-0 bg-black/40" />
                   <div className="absolute px-4 text-center text-4xl font-bold text-white sm:text-6xl lg:text-8xl">
-                      <h1>Nos Projets</h1>
+                      <p>Nos Projets</p>
                   </div>
               </div>
             </div>

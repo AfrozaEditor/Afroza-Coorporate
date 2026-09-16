@@ -12,12 +12,6 @@ import {
 } from "lucide-react";
 import Reveal from "@/components/common/Reveal";
 import { getServiceBySlug, services } from "@/data/services";
-import { createPageMetadata, SITE_URL } from "@/lib/seo/metadata";
-import {
-  JsonLd,
-  breadcrumbSchema,
-  serviceSchema,
-} from "@/lib/seo/structured-data";
 
 type ServicePageProps = {
   params: Promise<{ slug: string }>;
@@ -39,11 +33,10 @@ export async function generateMetadata({
     };
   }
 
-  return createPageMetadata({
-    title: service.title,
+  return {
+    title: `${service.title} | Afroza Editor`,
     description: service.summary,
-    path: `/services/${slug}`,
-  });
+  };
 }
 
 export default async function ServiceDetailPage({ params }: ServicePageProps) {
@@ -59,22 +52,7 @@ export default async function ServiceDetailPage({ params }: ServicePageProps) {
     .slice(0, 2);
 
   return (
-    <div className="bg-white text-ink">
-      <JsonLd
-        data={serviceSchema({
-          name: service.title,
-          description: service.description,
-          url: `${SITE_URL}/services/${service.slug}`,
-          category: service.category,
-        })}
-      />
-      <JsonLd
-        data={breadcrumbSchema([
-          { name: "Accueil", href: "/" },
-          { name: "Services", href: "/services" },
-          { name: service.title, href: `/services/${service.slug}` },
-        ])}
-      />
+    <main className="bg-white text-ink">
       <section className="relative overflow-hidden px-4 pb-16 pt-36 text-white sm:px-6 sm:pb-24 sm:pt-44 lg:px-8">
         <Image
           src={service.image}
@@ -251,6 +229,6 @@ export default async function ServiceDetailPage({ params }: ServicePageProps) {
           </div>
         </div>
       </section>
-    </div>
+    </main>
   );
 }

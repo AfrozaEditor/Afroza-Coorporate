@@ -105,7 +105,7 @@ export default function News() {
                     />
                     <div className="absolute inset-0 bg-black/40" />
                     <div className="absolute px-4 text-center text-4xl font-bold text-white sm:text-6xl lg:text-8xl">
-                        <h1>Blog</h1>
+                        <p>Blog</p>
                     </div>
                 </div>
             </div>

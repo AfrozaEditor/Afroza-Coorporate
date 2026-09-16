@@ -6,12 +6,6 @@ import { ArrowLeft, CheckCircle2, ExternalLink, MapPin } from "lucide-react";
 import Reveal from "@/components/common/Reveal";
 import { SocialIcon } from "@/components/ui/social-icon";
 import { getTeamMemberBySlug, teamMembers } from "@/data/team";
-import { SITE_NAME, SITE_URL } from "@/lib/seo/metadata";
-import {
-  JsonLd,
-  breadcrumbSchema,
-  personSchema,
-} from "@/lib/seo/structured-data";
 
 type MemberPageProps = {
   params: Promise<{ slug: string }>;
@@ -29,28 +23,28 @@ export async function generateMetadata({
 
   if (!member) {
     return {
-      title: "Membre introuvable",
+      title: "Membre introuvable — Afroza Editor",
     };
   }
 
-  const imageUrl = `${SITE_URL}${member.photo}`;
-  const pageUrl = `${SITE_URL}/membres/${member.slug}`;
+  const imageUrl = `https://afroza-editor.tech${member.photo}`;
+  const pageUrl = `https://afroza-editor.tech/membres/${member.slug}`;
 
   return {
-    title: `${member.name} — ${member.role}`,
+    title: `${member.name} — ${member.role} | Afroza Editor`,
     description: member.headline,
 
     openGraph: {
       type: "profile",
-      locale: "fr_CM",
-      siteName: SITE_NAME,
+      locale: "fr_FR",
+      siteName: "Afroza Editor",
       title: `${member.name} — ${member.role}`,
       description: member.bio,
       url: pageUrl,
       images: [
         {
           url: imageUrl,
-          width: 1200,
+          width: 1200, // remplace par les vraies dimensions du fichier si différentes
           height: 630,
           alt: member.name,
         },
@@ -79,24 +73,7 @@ export default async function MemberDetailPage({ params }: MemberPageProps) {
     .slice(0, 3);
 
   return (
-    <div className="bg-white text-ink">
-      <JsonLd
-        data={personSchema({
-          name: member.name,
-          jobTitle: member.role,
-          description: member.bio,
-          url: `${SITE_URL}/membres/${member.slug}`,
-          image: `${SITE_URL}${member.photo}`,
-        })}
-      />
-      <JsonLd
-        data={breadcrumbSchema([
-          { name: "Accueil", href: "/" },
-          { name: "À propos", href: "/about" },
-          { name: "Équipe", href: "/about#team" },
-          { name: member.name, href: `/membres/${member.slug}` },
-        ])}
-      />
+    <main className="bg-white text-ink">
       <section className="relative overflow-hidden bg-ink px-4 pb-16 pt-36 text-white sm:px-6 sm:pb-24 sm:pt-44 lg:px-8">
         <Image
           src="/images/footer-bg.jpg"
@@ -279,6 +256,6 @@ export default async function MemberDetailPage({ params }: MemberPageProps) {
           </div>
         </div>
       </section>
-    </div>
+    </main>
   );
 }

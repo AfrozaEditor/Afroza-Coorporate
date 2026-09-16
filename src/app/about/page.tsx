@@ -1,4 +1,3 @@
-import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
 import {
@@ -14,19 +13,6 @@ import {
 import Reveal from "@/components/common/Reveal";
 import TeamShowcase from "@/components/common/TeamShowcase";
 import { teamMembers } from "@/data/team";
-import { SITE_URL, createPageMetadata } from "@/lib/seo/metadata";
-import {
-  JsonLd,
-  breadcrumbSchema,
-  webPageSchema,
-} from "@/lib/seo/structured-data";
-
-export const metadata: Metadata = createPageMetadata({
-  title: "À propos de AFROZA Editor",
-  description:
-    "Découvrez AFROZA Editor : une équipe basée à Yaoundé, au Cameroun, qui conçoit des solutions numériques — développement web, mobile, UI/UX design et accompagnement digital.",
-  path: "/about",
-});
 
 const stats = [
   { value: "2024", label: "Lancement d'Afroza Editor" },
@@ -83,21 +69,7 @@ const steps = [
 
 export default function About() {
   return (
-    <div className="bg-white text-ink">
-      <JsonLd
-        data={breadcrumbSchema([
-          { name: "Accueil", href: "/" },
-          { name: "À propos", href: "/about" },
-        ])}
-      />
-      <JsonLd
-        data={webPageSchema({
-          name: "À propos de AFROZA Editor",
-          description:
-            "Découvrez AFROZA Editor : une équipe basée à Yaoundé, au Cameroun, qui conçoit des solutions numériques — développement web, mobile, UI/UX design et accompagnement digital.",
-          url: `${SITE_URL}/about`,
-        })}
-      />
+    <main className="bg-white text-ink">
       <section className="relative flex h-[100svh] min-h-[34rem] items-center overflow-hidden px-4 pb-16 pt-36 text-white sm:min-h-[42rem] sm:px-6 sm:pt-44 lg:px-8">
         <Image
           src="/images/footer-bg.jpg"
@@ -283,6 +255,6 @@ export default function About() {
           <TeamShowcase members={teamMembers} />
         </div>
       </section>
-    </div>
+    </main>
   );
 }

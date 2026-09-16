@@ -1,57 +1,54 @@
 import type { Metadata } from "next";
 import "./styles/globals.css";
+import { cn } from "@/lib/utils";
 import Header from "@/components/layout/header";
 import Footer from "@/components/layout/footer";
-import {
-  SITE_URL,
-  SITE_NAME,
-  DEFAULT_TITLE,
-  DEFAULT_DESCRIPTION,
-  DEFAULT_OG_IMAGE,
-  LOCALE,
-} from "@/lib/seo/metadata";
-import {
-  JsonLd,
-  organizationSchema,
-  websiteSchema,
-} from "@/lib/seo/structured-data";
+
+const siteUrl = "https://afroza-editor.tech"; // remplace par ton vrai domaine
 
 export const metadata: Metadata = {
-  metadataBase: new URL(SITE_URL),
+  metadataBase: new URL(siteUrl),
   title: {
-    default: DEFAULT_TITLE,
-    template: `%s | ${SITE_NAME}`,
+    default: "Afroza Editor — Solutions numériques au Cameroun",
+    template: "%s | Afroza Editor",
   },
-  description: DEFAULT_DESCRIPTION,
+  description:
+    "Afroza Editor conçoit des solutions web, mobiles et digitales innovantes pour les entreprises au Cameroun.",
   keywords: [
-    "AFROZA Editor",
+    "Afroza Editor",
+    "karel ondo jean",
+    "bell aqil",
+    "jedidia kamdem souop",
     "solutions numériques Cameroun",
-    "développement web Cameroun",
-    "développement application mobile",
+    "applications web Cameroun",
+    "applications mobiles Cameroun",
     "agence digitale Cameroun",
-    "UI UX design Cameroun",
-    "intelligence artificielle Cameroun",
-    "transformation digitale Cameroun",
+    "afroza",
+    "développement web Cameroun",
     "solutions digitales Afrique",
+    "SaaS Cameroun",
+    "cybersécurité Cameroun",
+    "identité numérique",
   ],
-  authors: [{ name: SITE_NAME }],
-  creator: SITE_NAME,
-  publisher: SITE_NAME,
+  authors: [{ name: "Afroza Editor" }],
+  creator: "Afroza Editor",
+  publisher: "Afroza Editor",
 
-  // Open Graph — WhatsApp, Facebook, LinkedIn, Telegram, etc.
+  // Open Graph — utilisé par WhatsApp, Facebook, LinkedIn, Telegram, etc.
   openGraph: {
     type: "website",
-    locale: LOCALE,
-    url: SITE_URL,
-    siteName: SITE_NAME,
-    title: DEFAULT_TITLE,
-    description: DEFAULT_DESCRIPTION,
+    locale: "fr_FR",
+    url: siteUrl,
+    siteName: "Afroza Editor",
+    title: "Afroza Editor — Solutions numériques au Cameroun",
+    description:
+      "Afroza Editor conçoit des solutions web, mobiles et digitales innovantes pour les entreprises au Cameroun.",
     images: [
       {
-        url: DEFAULT_OG_IMAGE,
+        url: "https://storage.googleapis.com/gpt-engineer-file-uploads/fMqgEAyw9HNCy1L4GQvdCxNBn9P2/social-images/social-1762628047737-afroza_editor(VERTICAL)bleu.png", // idéalement 1200x630
         width: 1200,
         height: 630,
-        alt: SITE_NAME,
+        alt: "Afroza Editor",
       },
     ],
   },
@@ -59,22 +56,20 @@ export const metadata: Metadata = {
   // Twitter / X Card
   twitter: {
     card: "summary_large_image",
-    title: DEFAULT_TITLE,
-    description: DEFAULT_DESCRIPTION,
-    images: [DEFAULT_OG_IMAGE],
+    title: "Afroza Editor — Solutions numériques au Cameroun",
+    description:
+      "Afroza Editor conçoit des solutions web, mobiles et digitales innovantes pour les entreprises au Cameroun.",
+    images: ["https://storage.googleapis.com/gpt-engineer-file-uploads/fMqgEAyw9HNCy1L4GQvdCxNBn9P2/social-images/social-1762628047737-afroza_editor(VERTICAL)bleu.png"],
   },
 
-  // Favicon / icons
+  // Favicon / icônes onglet + partage
   icons: {
-    icon: [
-      { url: "/favicon.ico", sizes: "any" },
-      { url: "/favicon-16x16.png", sizes: "16x16", type: "image/png" },
-      { url: "/favicon-32x32.png", sizes: "32x32", type: "image/png" },
-    ],
-    apple: "/web-app-manifest-192x192.png",
+    icon: "/favicon.ico",
+    shortcut: "/favicon-16x16.png",
+    apple: "/favicon-32x32.png",
   },
 
-  // Search engine indexation
+  // Indexation par les moteurs de recherche
   robots: {
     index: true,
     follow: true,
@@ -85,13 +80,9 @@ export const metadata: Metadata = {
     },
   },
 
-  // Google Search Console verification
   verification: {
     google: "qmQApfJmp4jwt8m3oNtTot7nGNwfsOfLgMnD4FfPkXQ",
   },
-
-  // Manifest
-  manifest: "/site.webmanifest",
 };
 
 export default function RootLayout({
@@ -102,16 +93,10 @@ export default function RootLayout({
   return (
     <html lang="fr" className="h-full antialiased overflow-x-hidden">
       <body className="min-h-full flex flex-col overflow-x-hidden">
-        {/* Global structured data */}
-        <JsonLd data={organizationSchema()} />
-        <JsonLd data={websiteSchema()} />
-
         <Header/>
-        <main id="main-content">
-          {children}
-        </main>
+        {children}
         <Footer/>
-      </body>
+        </body>
     </html>
   );
 }

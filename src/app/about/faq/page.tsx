@@ -1,21 +1,7 @@
-import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
 import { ArrowRight, HelpCircle } from "lucide-react";
 import Reveal from "@/components/common/Reveal";
-import { createPageMetadata } from "@/lib/seo/metadata";
-import {
-  JsonLd,
-  breadcrumbSchema,
-  faqPageSchema,
-} from "@/lib/seo/structured-data";
-
-export const metadata: Metadata = createPageMetadata({
-  title: "Questions fréquentes (FAQ)",
-  description:
-    "Réponses aux questions les plus fréquentes sur les services, les tarifs, la méthode de travail et l'accompagnement proposé par AFROZA Editor.",
-  path: "/about/faq",
-});
 
 const faqs = [
   {
@@ -62,15 +48,7 @@ const faqs = [
 
 export default function FaqPage() {
   return (
-    <div className="bg-white text-ink">
-      <JsonLd data={faqPageSchema(faqs)} />
-      <JsonLd
-        data={breadcrumbSchema([
-          { name: "Accueil", href: "/" },
-          { name: "À propos", href: "/about" },
-          { name: "FAQ", href: "/about/faq" },
-        ])}
-      />
+    <main className="bg-white text-ink">
       <section className="relative flex min-h-[30rem] items-center overflow-hidden px-4 pb-16 pt-36 text-white sm:min-h-[38rem] sm:px-6 sm:pt-44 lg:px-8">
         <Image
           src="/images/footer-bg.jpg"
@@ -129,6 +107,6 @@ export default function FaqPage() {
           </div>
         </div>
       </section>
-    </div>
+    </main>
   );
 }

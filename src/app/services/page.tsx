@@ -1,18 +1,8 @@
-import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
 import { ArrowRight, CheckCircle2, Layers3, Megaphone, Palette } from "lucide-react";
 import Reveal from "@/components/common/Reveal";
 import { services } from "@/data/services";
-import { createPageMetadata } from "@/lib/seo/metadata";
-import { JsonLd, breadcrumbSchema } from "@/lib/seo/structured-data";
-
-export const metadata: Metadata = createPageMetadata({
-  title: "Nos Services",
-  description:
-    "AFROZA Editor propose des services de développement web et mobile, conception UI/UX, design visuel, marketing digital et accompagnement de lancement pour les entreprises au Cameroun.",
-  path: "/services",
-});
 
 const serviceIcons = {
   "developpement-web-mobile": <Layers3 size={28} />,
@@ -28,13 +18,7 @@ const commitments = [
 
 export default function ServicesPage() {
   return (
-    <div className="bg-white text-ink">
-      <JsonLd
-        data={breadcrumbSchema([
-          { name: "Accueil", href: "/" },
-          { name: "Services", href: "/services" },
-        ])}
-      />
+    <main className="bg-white text-ink">
       <section className="relative flex h-[100svh] min-h-[34rem] items-center overflow-hidden px-4 pb-16 pt-36 text-white sm:min-h-[40rem] sm:px-6 sm:pt-44 lg:px-8">
         <Image
           src="/images/services/service1.jpg"
@@ -141,6 +125,6 @@ export default function ServicesPage() {
           </div>
         </div>
       </section>
-    </div>
+    </main>
   );
 }

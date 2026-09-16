@@ -1,18 +1,8 @@
-import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
 import { ArrowRight, CheckCircle2 } from "lucide-react";
 import Reveal from "@/components/common/Reveal";
 import { services } from "@/data/services";
-import { createPageMetadata } from "@/lib/seo/metadata";
-import { JsonLd, breadcrumbSchema } from "@/lib/seo/structured-data";
-
-export const metadata: Metadata = createPageMetadata({
-  title: "Tarifs et offres",
-  description:
-    "Découvrez les offres AFROZA Editor : des formules adaptées à chaque niveau de projet, du site vitrine à la plateforme évolutive. Devis sur mesure.",
-  path: "/about/tarifs",
-});
 
 const packages = [
   {
@@ -62,14 +52,7 @@ const billingNotes = [
 
 export default function PricingPage() {
   return (
-    <div className="bg-white text-ink">
-      <JsonLd
-        data={breadcrumbSchema([
-          { name: "Accueil", href: "/" },
-          { name: "À propos", href: "/about" },
-          { name: "Tarifs", href: "/about/tarifs" },
-        ])}
-      />
+    <main className="bg-white text-ink">
       <section className="relative flex min-h-[30rem] items-center overflow-hidden px-4 pb-16 pt-36 text-white sm:min-h-[38rem] sm:px-6 sm:pt-44 lg:px-8">
         <Image
           src="/images/notre_philosophie.jpg"
@@ -195,6 +178,6 @@ export default function PricingPage() {
           </div>
         </div>
       </section>
-    </div>
+    </main>
   );
 }
