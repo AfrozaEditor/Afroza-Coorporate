@@ -2,15 +2,6 @@ import Image from "next/image";
 import { Mail, MapPin, Phone } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import Reveal from "@/components/common/Reveal";
-import { createPageMetadata } from "@/lib/seo/metadata";
-import { JsonLd, breadcrumbSchema } from "@/lib/seo/structured-data";
-
-export const metadata = createPageMetadata({
-  title: "Contact",
-  description:
-    "Contactez AFROZA Editor pour discuter de votre projet numérique : développement web, mobile, UI/UX design ou marketing digital. Basés à Yaoundé, Cameroun.",
-  path: "/contact",
-});
 
 const contactItems = [
   {
@@ -32,13 +23,7 @@ const contactItems = [
 
 export default function ContactPage() {
   return (
-    <div className="bg-white text-ink">
-      <JsonLd
-        data={breadcrumbSchema([
-          { name: "Accueil", href: "/" },
-          { name: "Contact", href: "/contact" },
-        ])}
-      />
+    <main className="bg-white text-ink">
       <section className="relative flex min-h-[30rem] items-center overflow-hidden px-4 pb-16 pt-36 text-white sm:min-h-[38rem] sm:px-6 sm:pt-44 lg:px-8">
         <Image
           src="/images/contact.jpg"
@@ -89,49 +74,25 @@ export default function ContactPage() {
           <Reveal delay={120}>
             <form className="rounded-2xl bg-ink p-5 text-white shadow-2xl sm:p-8">
               <div className="grid gap-4 sm:grid-cols-2">
-                <div>
-                  <label htmlFor="name" className="sr-only">
-                    Nom complet
-                  </label>
-                  <input
-                    id="name"
-                    className="w-full border-b border-white/50 bg-transparent py-4 outline-none placeholder:text-white/50 focus:border-brand"
-                    placeholder="Nom complet"
-                  />
-                </div>
-                <div>
-                  <label htmlFor="email" className="sr-only">
-                    Adresse e-mail
-                  </label>
-                  <input
-                    id="email"
-                    className="w-full border-b border-white/50 bg-transparent py-4 outline-none placeholder:text-white/50 focus:border-brand"
-                    placeholder="Adresse e-mail"
-                    type="email"
-                  />
-                </div>
-              </div>
-              <div>
-                <label htmlFor="subject" className="sr-only">
-                  Sujet
-                </label>
                 <input
-                  id="subject"
-                  className="mt-4 w-full border-b border-white/50 bg-transparent py-4 outline-none placeholder:text-white/50 focus:border-brand"
-                  placeholder="Sujet"
+                  className="border-b border-white/50 bg-transparent py-4 outline-none placeholder:text-white/50 focus:border-brand"
+                  placeholder="Nom complet"
+                />
+                <input
+                  className="border-b border-white/50 bg-transparent py-4 outline-none placeholder:text-white/50 focus:border-brand"
+                  placeholder="Adresse e-mail"
+                  type="email"
                 />
               </div>
-              <div>
-                <label htmlFor="message" className="sr-only">
-                  Votre message
-                </label>
-                <textarea
-                  id="message"
-                  className="mt-4 w-full border-b border-white/50 bg-transparent py-4 outline-none placeholder:text-white/50 focus:border-brand"
-                  placeholder="Votre message"
-                  rows={6}
-                />
-              </div>
+              <input
+                className="mt-4 w-full border-b border-white/50 bg-transparent py-4 outline-none placeholder:text-white/50 focus:border-brand"
+                placeholder="Sujet"
+              />
+              <textarea
+                className="mt-4 w-full border-b border-white/50 bg-transparent py-4 outline-none placeholder:text-white/50 focus:border-brand"
+                placeholder="Votre message"
+                rows={6}
+              />
               <div className="mt-8 flex justify-end">
                 <Button className="h-auto rounded-full bg-brand px-8 py-4 text-sm font-bold text-white hover:bg-brand-dark">
                   Envoyer le message
@@ -141,6 +102,6 @@ export default function ContactPage() {
           </Reveal>
         </div>
       </section>
-    </div>
+    </main>
   );
 }

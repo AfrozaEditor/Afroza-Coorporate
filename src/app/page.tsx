@@ -555,45 +555,32 @@ export default function Home() {
             
             <form
               action="#"
-              aria-label="Formulaire de contact"
               className="bg-[#1F1F1F] px-10 py-16 w-full  shadow-2xl"
             >
               <h3 className="text-sm text-white/70 uppercase tracking-wider">
-                Toujours disponibles
+                We are always ready
               </h3>
               <p className="mt-2 text-3xl font-bold text-white">
-                Demandez un rappel
+                Request a call back
               </p>
               <div className="mt-8 grid gap-4 sm:grid-cols-2">
-                <div>
-                  <label htmlFor="home-name" className="sr-only">Nom complet</label>
-                  <input
-                    id="home-name"
-                    className="border-b py-4 border-white text-white outline-none focus:border-brand w-full"
-                    placeholder="Nom complet"
-                    required
-                  />
-                </div>
-                <div>
-                  <label htmlFor="home-email" className="sr-only">Adresse e-mail</label>
-                  <input
-                    id="home-email"
-                    className="border-b py-4 border-white text-white outline-none focus:border-brand w-full"
-                    placeholder="Adresse e-mail"
-                    type="email"
-                    required
-                  />
-                </div>
+                <input
+                  className="border-b py-4 border-white text-white outline-none focus:border-brand"
+                  placeholder="Nom complet"
+                  required
+                />
+                <input
+                  className="border-b py-4 border-white text-white outline-none focus:border-brand"
+                  placeholder="Adresse e-mail"
+                  type="email"
+                  required
+                />
               </div>
-              <label htmlFor="home-subject" className="sr-only">Sujet</label>
               <input
-                id="home-subject"
                 className="mt-4 w-full border-b py-4 border-white text-white outline-none focus:border-brand"
                 placeholder="Sujet"
               />
-              <label htmlFor="home-message" className="sr-only">Votre message</label>
               <textarea
-                id="home-message"
                 className="mt-4 w-full border-b py-4 border-white text-white outline-none focus:border-brand"
                 placeholder="Votre message"
                 rows={5}
