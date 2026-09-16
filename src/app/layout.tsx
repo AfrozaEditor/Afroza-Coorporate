@@ -13,7 +13,7 @@ export const metadata: Metadata = {
     template: "%s | Afroza Editor",
   },
   description:
-    "Afroza Editor conçoit des solutions web, mobiles et digitales innovantes pour les entreprises au Cameroun.",
+    "Afroza Editor conçoit des solutions numériques innovantes en Afrique : développement web et mobile, UI/UX design, intelligence artificielle, data, jeux vidéo et transformation digitale.",
   keywords: [
     "Afroza Editor",
     "karel ondo jean",
@@ -37,7 +37,7 @@ export const metadata: Metadata = {
   // Open Graph — utilisé par WhatsApp, Facebook, LinkedIn, Telegram, etc.
   openGraph: {
     type: "website",
-    locale: "fr_FR",
+    locale: "fr_CM",
     url: siteUrl,
     siteName: "Afroza Editor",
     title: "Afroza Editor — Solutions numériques au Cameroun",
