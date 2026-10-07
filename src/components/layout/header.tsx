@@ -445,11 +445,11 @@ export default function Header() {
 
         {/* Coordonnées + réseaux sociaux */}
         <div className="mt-6 space-y-3 border-t border-white/10 pt-6">
-          <a href="tel:+237659974106" className="flex items-center gap-2 text-sm text-white/80">
+          <a href="tel:+237656921921" className="flex items-center gap-2 text-sm text-white/80">
             <span className="text-accent"><Phone size={14} /></span>
             +237 656 921 921
           </a>
-          <a href="mailto:Afrozaeditor@yahoo.com" className="flex items-center gap-2 text-sm text-white/80">
+          <a href="mailto: afroza.editor@gmail.com" className="flex items-center gap-2 text-sm text-white/80">
             <span className="text-accent"><Mail size={14} /></span>
             afroza.editor@gmail.com
           </a>

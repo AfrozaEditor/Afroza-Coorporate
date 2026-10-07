@@ -12,7 +12,7 @@ const contactItems = [
   {
     icon: <Mail size={24} />,
     label: "Email",
-    value: "afrozaeditor@yahoo.com",
+    value: " afroza.editor@gmail.com",
   },
   {
     icon: <MapPin size={24} />,
