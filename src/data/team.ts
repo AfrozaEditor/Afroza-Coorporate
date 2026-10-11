@@ -45,13 +45,13 @@ export const teamMembers: TeamMember[] = [
     socials: defaultSocials,
   },
   {
-    slug: "fokou-sheryle",
-    name: "Fokou Sheryle",
+    slug: "bell-aqil",
+    name: "Bell Aqil",
     role: "COO",
-    photo: "/images/team/team2.jpg",
+    photo: "/images/team/team5.jpg",
     headline: "Organisation, opérations et excellence de livraison.",
     bio:
-      "Sheryle veille à la fluidité des opérations et à la bonne coordination des projets. Elle sécurise les délais, les échanges clients et la progression de chaque chantier.",
+      "Bell veille à la fluidité des opérations et à la bonne coordination des projets. Il sécurise les délais, les échanges clients et la progression de chaque chantier.",
     location: "Yaoundé, Cameroun",
     focus: ["Opérations", "Suivi client", "Qualité de livraison"],
     skills: ["Coordination", "Process", "Communication", "Planification"],
@@ -103,24 +103,24 @@ export const teamMembers: TeamMember[] = [
     ],
     socials: defaultSocials,
   },
-  {
-    slug: "bell-aqil",
-    name: "Bell Aqil",
-    role: "DevOps / Lead Backend",
-    photo: "/images/team/team5.jpg",
-    headline: "Infrastructure, déploiement et fiabilité des services.",
-    bio:
-      "Bell intervient sur la mise en production, l'automatisation et la stabilité des plateformes. Il aide l'équipe à livrer plus vite sans perdre le contrôle opérationnel.",
-    location: "Yaoundé, Cameroun",
-    focus: ["Déploiement", "Automatisation", "Monitoring"],
-    skills: ["Docker", "CI/CD", "Linux", "Cloud", "PostgreSQL"],
-    highlights: [
-      "Prépare les environnements de développement et production.",
-      "Automatise les tâches répétitives de livraison.",
-      "Surveille la disponibilité et la performance des services.",
-    ],
-    socials: defaultSocials,
-  },
+  // {
+  //   slug: "bell-aqil",
+  //   name: "Bell Aqil",
+  //   role: "DevOps / Lead Backend",
+  //   photo: "/images/team/team5.jpg",
+  //   headline: "Infrastructure, déploiement et fiabilité des services.",
+  //   bio:
+  //     "Bell intervient sur la mise en production, l'automatisation et la stabilité des plateformes. Il aide l'équipe à livrer plus vite sans perdre le contrôle opérationnel.",
+  //   location: "Yaoundé, Cameroun",
+  //   focus: ["Déploiement", "Automatisation", "Monitoring"],
+  //   skills: ["Docker", "CI/CD", "Linux", "Cloud", "PostgreSQL"],
+  //   highlights: [
+  //     "Prépare les environnements de développement et production.",
+  //     "Automatise les tâches répétitives de livraison.",
+  //     "Surveille la disponibilité et la performance des services.",
+  //   ],
+  //   socials: defaultSocials,
+  // },
   {
     slug: "jires-nana",
     name: "Jires Nana",
@@ -175,24 +175,24 @@ export const teamMembers: TeamMember[] = [
     ],
     socials: defaultSocials,
   },
-  {
-    slug: "melotech",
-    name: "Melotech",
-    role: "Marketing Digital",
-    photo: "/images/team/team9.jpg",
-    headline: "Contenus, campagnes et présence digitale au quotidien.",
-    bio:
-      "Melotech accompagne l'exécution des actions marketing d'Afroza Editor : création de contenus, animation des réseaux et suivi des campagnes. Il traduit la stratégie de marque en actions concrètes sur le terrain digital.",
-    location: "Yaoundé, Cameroun",
-    focus: ["Contenu digital", "Réseaux sociaux", "Suivi de campagnes"],
-    skills: ["Social media", "Création de contenu", "Community management", "Reporting"],
-    highlights: [
-      "Anime les réseaux sociaux et la présence en ligne de l'équipe.",
-      "Produit des contenus alignés avec l'identité de marque.",
-      "Suit la performance des campagnes et ajuste les actions.",
-    ],
-    socials: defaultSocials,
-  },
+  // {
+  //   slug: "melotech",
+  //   name: "Melotech",
+  //   role: "Marketing Digital",
+  //   photo: "/images/team/team9.jpg",
+  //   headline: "Contenus, campagnes et présence digitale au quotidien.",
+  //   bio:
+  //     "Melotech accompagne l'exécution des actions marketing d'Afroza Editor : création de contenus, animation des réseaux et suivi des campagnes. Il traduit la stratégie de marque en actions concrètes sur le terrain digital.",
+  //   location: "Yaoundé, Cameroun",
+  //   focus: ["Contenu digital", "Réseaux sociaux", "Suivi de campagnes"],
+  //   skills: ["Social media", "Création de contenu", "Community management", "Reporting"],
+  //   highlights: [
+  //     "Anime les réseaux sociaux et la présence en ligne de l'équipe.",
+  //     "Produit des contenus alignés avec l'identité de marque.",
+  //     "Suit la performance des campagnes et ajuste les actions.",
+  //   ],
+  //   socials: defaultSocials,
+  // },
 ];
 
 export function getTeamMemberBySlug(slug: string) {
