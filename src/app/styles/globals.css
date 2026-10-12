@@ -59,6 +59,80 @@
 }
 
 
+/* Back-office (maquette « Afroza Editor — Back-office News ») */
+@theme {
+  --color-bo-night: #092025;
+  --color-bo-night-2: #0F2E33;
+  --color-bo-teal: #0F6562;
+  --color-bo-cyan: #18CDC4;
+  --color-bo-blue: #18409E;
+  --color-bo-orange: #E36217;
+  --color-bo-ink: #1B2433;
+  --color-bo-ink-2: #2C3547;
+  --color-bo-slate: #4A5468;
+  --color-bo-muted: #626C84;
+  --color-bo-faint: #8A93A6;
+  --color-bo-gray: #9AA6B5;
+  --color-bo-off: #C5CDD6;
+  --color-bo-field: #D9E0E6;
+  --color-bo-line: #E3E8EC;
+  --color-bo-line-soft: #EEF1F4;
+  --color-bo-bg: #F4F7F8;
+  --color-bo-bg-2: #F8FAFB;
+  --color-bo-teal-soft: #E0F8F6;
+  --color-bo-teal-wash: #F4FBFA;
+  --color-bo-teal-dash: #8FDCD7;
+  --color-bo-blue-soft: #E7EEFB;
+  --color-bo-mint: #9FD9D5;
+  --color-bo-sage: #7FA9AC;
+  --color-bo-mist: #D5E6E7;
+  --color-bo-foam: #C9E4E5;
+  --color-bo-warn-bg: #FDF0E8;
+  --color-bo-warn: #8A3A0B;
+  --color-bo-danger: #B3000F;
+}
+
+/* Contenu d'une news : éditeur du back-office et page article. */
+.news-content {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  font-size: 16px;
+  line-height: 1.7;
+  color: #2C3547;
+}
+.news-content > * { margin: 0; }
+.news-content h2 { margin-top: 6px; font-size: 22px; font-weight: 700; line-height: 1.3; color: #1B2433; }
+.news-content h3 { margin-top: 4px; font-size: 18px; font-weight: 700; line-height: 1.35; color: #1B2433; }
+.news-content a { color: #0F6562; font-weight: 700; text-decoration: underline; text-underline-offset: 2px; }
+.news-content a:hover { color: #18409E; }
+.news-content ul, .news-content ol { padding-left: 1.4em; display: flex; flex-direction: column; gap: 6px; }
+.news-content ul { list-style: disc; }
+.news-content ol { list-style: decimal; }
+.news-content li p { margin: 0; }
+.news-content blockquote { margin: 4px 0; padding: 14px 18px; background: #F4FBFA; border-radius: 10px; font-weight: 500; color: #0F6562; }
+.news-content blockquote p { margin: 0; }
+.news-content img { display: block; max-width: 100%; height: auto; border-radius: 12px; }
+.news-content code { padding: 1px 6px; border-radius: 6px; background: #EEF1F4; font-size: 0.92em; }
+.news-content pre { padding: 14px 16px; border-radius: 10px; background: #1B2433; color: #FFFFFF; overflow-x: auto; }
+.news-content pre code { padding: 0; background: transparent; color: inherit; }
+.news-content hr { border: 0; border-top: 1px solid #E3E8EC; margin: 8px 0; }
+.news-content div[data-youtube-video] { position: relative; aspect-ratio: 16 / 9; border-radius: 12px; overflow: hidden; background: #092025; }
+.news-content div[data-youtube-video] iframe { position: absolute; inset: 0; width: 100%; height: 100%; border: 0; }
+
+/* Éditeur Tiptap */
+.news-content.ProseMirror { outline: none; min-height: 232px; }
+.news-content.ProseMirror p.is-editor-empty:first-child::before,
+.news-content.ProseMirror p.is-empty::before {
+  content: attr(data-placeholder);
+  float: left;
+  height: 0;
+  color: #8A93A6;
+  pointer-events: none;
+}
+.news-content.ProseMirror img.ProseMirror-selectednode,
+.news-content.ProseMirror div[data-youtube-video].ProseMirror-selectednode { outline: 3px solid #18CDC4; outline-offset: 2px; }
+
 @keyframes marquee {
   from { transform: translateX(0%); }
   to { transform: translateX(-50%); }

@@ -2,7 +2,7 @@
 
 import Image from "next/image";
 import { useState } from "react";
-import CoverflowDemo from "../../components/common/coverflow";
+import CoverflowDemo from "@/components/common/coverflow";
 import { cards1 } from "@/config/social";
 import { Button } from "@/components/ui/button";
 import ProjectsShowcase, { type Project } from "@/components/common/projectFlow";

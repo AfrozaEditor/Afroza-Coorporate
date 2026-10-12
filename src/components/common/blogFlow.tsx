@@ -1,10 +1,15 @@
+"use client";
+
 import { ChevronDown, ExternalLink, Menu, Play, Share, Share2, User } from "lucide-react";
 import Image from "next/image";
+import Link from "next/link";
 import { useState } from "react";
 
+import { NEWS_CATEGORIES } from "@/lib/news/types";
 
 
-type Element = {
+
+export type BlogElement = {
   title: string;
   date: string;
   text: string;
@@ -12,15 +17,15 @@ type Element = {
   isVideo?: boolean;
   link?: string;
   auteur?: string;
+  /** Page article de la news. */
+  href?: string;
+  category?: string;
 };
 
-const cards = [
-  { id: 1, title: "Développement", image: "/features/projects/R23.png" },
-  { id: 2, title: "Business", image: "/features/projects/R23.png" },
-  { id: 3, title: "Design", image: "/features/projects/R23.png" },
-  { id: 4, title: "Data & IA", image: "/features/projects/R23.png" },
-  { id: 5, title: "Marketing", image: "/features/projects/R23.png" },
-];
+const ALL = "Toutes";
+
+type Element = BlogElement;
+
 
 
 // --- Bloc média : s'adapte selon 1 ou 2 images ---
@@ -103,12 +108,33 @@ function BlogProjectRow({
       {/* Bloc texte */}
       <div className="w-full md:w-2/5 flex flex-col justify-between ">
       <div>
-        <h3 className="text-4xl font-bold text-gray-900">{element.title}</h3>
+        {element.category && (
+          <span className="mb-3 inline-block rounded-md bg-brand px-2.5 py-0.5 text-sm font-semibold text-[#092025]">
+            {element.category}
+          </span>
+        )}
+        <h3 className="text-4xl font-bold text-gray-900">
+          {element.href ? (
+            <Link href={element.href} className="hover:text-brand transition-colors">
+              {element.title}
+            </Link>
+          ) : (
+            element.title
+          )}
+        </h3>
         <h3 className="text-xl font-medium italic text-gray-900">{element.date}</h3>
       </div>
         <p className="text-2xl text-gray-500 leading-relaxed whitespace-pre-line">
           {element.text}
         </p>
+        {element.href && (
+          <Link
+            href={element.href}
+            className="self-start text-lg font-semibold text-brand transition-colors hover:text-brand-dark"
+          >
+            Lire la suite <span aria-hidden="true">→</span>
+          </Link>
+        )}
 
         <div className="flex flex-col items-start gap-4">
 
@@ -154,31 +180,57 @@ export default function ProjectsShowcase({
 }: {
   elements: Element[];
 }) {
+  const [activeCategory, setActiveCategory] = useState(ALL);
   const [visibleCount, setVisibleCount] = useState(4); // combien de projets affichés au départ
-  const visibleElements = elements.slice(0, visibleCount);
-  const hasMore = visibleCount < elements.length;
+
+  const countFor = (category: string) =>
+    category === ALL ? elements.length : elements.filter((element) => element.category === category).length;
+  const filtered =
+    activeCategory === ALL ? elements : elements.filter((element) => element.category === activeCategory);
+  const visibleElements = filtered.slice(0, visibleCount);
+  const hasMore = visibleCount < filtered.length;
+
+  const selectCategory = (category: string) => {
+    setActiveCategory(category);
+    setVisibleCount(4);
+  };
 
   return (
     <div className="flex flex-col gap-20 py-10 w-full max-w-7xl items-center justify-center">
       <p className="font-bold text-3xl">Catégories</p>
-      <div className="flex gap-8">
-        {cards.map((c, i) => (
-          <button
-            key={c.id}
-            // onClick={() => setActive(i)}
-            className={`text-sm transition-all ${
-              i === 1
-                ? "text-black font-semibold border-b-2 border-black pb-1"
-                : "text-gray-300 hover:text-gray-500"
-            }`}
-          >
-            {c.title}
-          </button>
-        ))}
+      <div role="group" aria-label="Filtrer les news par catégorie" className="flex flex-wrap justify-center gap-x-8 gap-y-3 px-6">
+        {[ALL, ...NEWS_CATEGORIES].map((category) => {
+          const count = countFor(category);
+          const active = category === activeCategory;
+          return (
+            <button
+              key={category}
+              type="button"
+              aria-pressed={active}
+              disabled={count === 0 && !active}
+              onClick={() => selectCategory(category)}
+              className={`text-sm transition-all disabled:cursor-not-allowed disabled:text-gray-200 ${
+                active
+                  ? "text-black font-semibold border-b-2 border-black pb-1"
+                  : "text-gray-300 hover:text-gray-500 pb-1 border-b-2 border-transparent"
+              }`}
+            >
+              {category}
+              <span className="ml-1.5 text-xs font-normal">({count})</span>
+            </button>
+          );
+        })}
       </div>
+
       {visibleElements.map((element, i) => (
-        <BlogProjectRow key={element.title} element={element} reverse={i % 2 === 1} />
+        <BlogProjectRow key={element.href ?? element.title} element={element} reverse={i % 2 === 1} />
       ))}
+
+      {filtered.length === 0 && (
+        <p className="text-xl text-gray-500" role="status">
+          Aucune news dans la catégorie « {activeCategory} » pour le moment.
+        </p>
+      )}
 
       {hasMore && (
         <button

@@ -1,14 +1,31 @@
-"use client";
+import type { NewsCategory, NewsSource } from "@/lib/news/types";
 
-import Image from "next/image";
-import BlogProjectRow from "@/components/common/blogFlow";
+// Contenu historique de la page News, affiché tant que Supabase n'est pas
+// configuré (ou s'il est injoignable). Repris dans supabase/seed.sql, avec les
+// mêmes liens (slug) : les adresses /news/<slug> restent valables après la bascule.
+type LegacyNews = {
+  slug: string;
+  title: string;
+  date: string;
+  text: string;
+  images: string[];
+  category: NewsCategory;
+  source: NewsSource;
+  isVideo?: boolean;
+  link?: string;
+  auteur?: string;
+  logo?: string;
+  avatars?: string[];
+  overlay?: string;
+};
 
-
-
-const news = [
+export const legacyNews: LegacyNews[] = [
   {
     title: "Mise sur pied du prototype final d'AS pour une éventuelle mise en circulation",
     date: "22-05-2026",
+    slug: "prototype-final-as-mise-en-circulation",
+    category: "Développement",
+    source: "written",
     text:
       "Console portable rétro, rétro-gaming, console nomade, jeux vidéo vintage… Depuis plus de 45 ans, les joueurs emportent leurs aventures partout avec eux. Des premiers écrans LCD des années 80 aux consoles portables ultra-puissantes d’aujourd’hui, le jeu vidéo nomade n’a cessé…",
     images: ["/news/news1.jpg"],
@@ -21,6 +38,9 @@ const news = [
   {
     title: "Varjo XR-4 Quel Impact pour les Développeurs ?",
     date: "22-05-2026",
+    slug: "varjo-xr-4-impact-pour-les-developpeurs",
+    category: "Data & IA",
+    source: "written",
     text:
       `Pour les créateurs d'applications et les ingénieurs logiciels, le Varjo XR-4 change radicalement la donne :
         Zéro Compromis Graphique : Les développeurs testent leurs environnements 3D en taille réelle avec des textures et des éclairages ultra-réalistes.
@@ -36,6 +56,9 @@ const news = [
   {
     title: "Afroza Editor participant au Cursor Hackaton",
     date: "22-05-2026",
+    slug: "afroza-editor-cursor-hackathon",
+    category: "Business",
+    source: "whatsapp",
     text:
       "Nous nous engageons à livrer vos projets dans les délais impartis, garantissant ainsi la satisfaction de nos clients.",
     logo: "/news/projects/logo_aps.png",
@@ -48,6 +71,9 @@ const news = [
   {
     title: "Félicitation AFROZA EDITOR",
     date: "22-05-2026",
+    slug: "felicitations-afroza-editor",
+    category: "Business",
+    source: "whatsapp",
     text:
       `Pour les créateurs d'applications et les ingénieurs logiciels, le Varjo XR-4 change radicalement la donne :
         Zéro Compromis Graphique : Les développeurs testent leurs environnements 3D en taille réelle avec des textures et des éclairages ultra-réalistes.
@@ -65,6 +91,9 @@ const news = [
   {
     title: "Afroza Solidarity",
     date: "22-05-2026",
+    slug: "afroza-solidarity",
+    category: "Business",
+    source: "written",
     text:
       "Nous nous engageons à livrer vos projets dans les délais impartis, garantissant ainsi la satisfaction de nos clients.",
     logo: "/news/projects/logo_as.png",
@@ -75,43 +104,3 @@ const news = [
     auteur: 'Fokou Sheryle'
   },
 ];
-
-export default function News() {
-    return(
-        <>
-            <div className="relative flex h-[100svh] min-h-[34rem] w-full items-center justify-center sm:min-h-[38rem]">
-                <div className="relative w-full flex items-center justify-center my-auto bg-transparent h-full overflow-hidden">
-
-                    {/* Coin haut-gauche : copie du dégradé, découpée en forme de coin arrondi
-                    <div
-                        className="absolute inset-0 z-10 bg-gradient-to-b from-brand to-[#22D51C]"
-                        style={{ clipPath: 'inset(0% 75% 75% 0% round 0 0 1rem 0)' }}
-                    /> */}
-
-                    {/* Coin bas-droite : idem */}
-                    {/* <div
-                        className="absolute inset-0 z-10 bg-gradient-to-b from-brand to-[#22D51C]"
-                        style={{ clipPath: 'inset(50% 0% 0% 75% round 1rem 0 0 0)' }}
-                    /> */}
-
-                    {/* Texte "Projets" positionné indépendamment, pas centré dans tout le bloc */}
-                    {/* <p className="absolute z-20 bottom-10 right-10 text-8xl font-bold">Projets</p> */}
-
-                    <Image
-                        src="/news/Banner.png"
-                        alt=""
-                        fill
-                        className="w-full h-full object-cover"
-                    />
-                    <div className="absolute inset-0 bg-black/40" />
-                    <div className="absolute px-4 text-center text-4xl font-bold text-white sm:text-6xl lg:text-8xl">
-                        <p>Blog</p>
-                    </div>
-                </div>
-            </div>
-            <div className="flex w-full items-center justify-center">
-            <BlogProjectRow elements={news}/>
-            </div>
-        </>
-    )
-}

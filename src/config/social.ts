@@ -23,6 +23,9 @@ export const socials = [
 
 
 
+// Lien d'abonnement à la chaîne WhatsApp (bouton « S'abonner » des news repartagées).
+export const whatsappChannelUrl = process.env.NEXT_PUBLIC_WHATSAPP_CHANNEL_URL ?? "";
+
 export const cards1 = [
   { id: 1, title: "Récents", color: "from-emerald-800 to-emerald-950" },
   { id: 2, title: "SAAS", color: "from-lime-700 to-emerald-900" },

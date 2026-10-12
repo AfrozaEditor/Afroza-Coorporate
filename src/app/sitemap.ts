@@ -2,8 +2,12 @@ import type { MetadataRoute } from "next";
 
 import { services } from "../data/services";
 import { teamMembers } from "../data/team";
+import { legacyNewsAsRows } from "@/lib/news/legacy";
+import { listPublishedNews } from "@/lib/news/queries";
 
-export default function sitemap(): MetadataRoute.Sitemap {
+export const revalidate = 3600;
+
+export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const baseUrl = (
     process.env.SITE_URL ?? "https://afroza-coorporate.vercel.app"
   ).replace(/\/$/, "");
@@ -34,5 +38,10 @@ export default function sitemap(): MetadataRoute.Sitemap {
     lastModified: new Date(),
   }));
 
-  return [...pages, ...serviceEntries, ...memberEntries];
+  const newsEntries: MetadataRoute.Sitemap = ((await listPublishedNews()) ?? legacyNewsAsRows()).map((news) => ({
+    url: `${baseUrl}/news/${news.slug}`,
+    lastModified: new Date(news.updated_at),
+  }));
+
+  return [...pages, ...serviceEntries, ...memberEntries, ...newsEntries];
 }
