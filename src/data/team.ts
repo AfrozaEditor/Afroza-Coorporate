@@ -29,7 +29,7 @@ export const teamMembers: TeamMember[] = [
   {
     slug: "karel-ondo",
     name: "Karel Ondo",
-    role: "CEO",
+    role: "Co-Founder & CEO",
     photo: "/images/team/team1.jpg",
     headline: "Vision produit, stratégie et développement commercial.",
     bio:
@@ -47,7 +47,7 @@ export const teamMembers: TeamMember[] = [
   {
     slug: "bell-aqil",
     name: "Bell Aqil",
-    role: "COO",
+    role: "Co-Founder & COO",
     photo: "/images/team/team5.jpg",
     headline: "Organisation, opérations et excellence de livraison.",
     bio:
@@ -65,7 +65,7 @@ export const teamMembers: TeamMember[] = [
   {
     slug: "jedidia-kamdem-souop",
     name: "Jedidia Kamdem Souop",
-    role: "CTO",
+    role: "Co-Founder & CTO",
     photo: "/images/team/team4.jpeg",
     headline: "Architecture technique, développement et choix technologiques.",
     bio:

@@ -1,12 +1,15 @@
 import Image from "next/image";
-import Counter from "../components/common/Counter";
-import HeroSlider from "../components/common/HeroSlider";
-import Reveal from "../components/common/Reveal";
+import Counter from "@/components/common/Counter";
+import HeroSlider from "@/components/common/HeroSlider";
+import Reveal from "@/components/common/Reveal";
 import { Button } from "@/components/ui/button";
 import { SocialIcon } from "@/components/ui/social-icon";
 import Link from "next/link";
 import { teamMembers } from "@/data/team";
 import { services as serviceCatalog } from "@/data/services";
+import { formatLongDate } from "@/lib/news/format";
+import { getFeaturedNews } from "@/lib/news/queries";
+import type { NewsRow } from "@/lib/news/types";
 
 /* ---------- Icons ---------- */
 function IconTarget() {
@@ -153,7 +156,52 @@ function SectionTitle({ eyebrow, title }: { eyebrow: string; title: string }) {
   );
 }
 
-export default function Home() {
+type HomePost = { title: string; date: string; text: string; image: string; href: string };
+
+// Contenu affiché tant qu'aucune news n'est « à la une » dans le back-office.
+const fallbackPosts: HomePost[] = [
+  {
+    title: "Mise sur pied du prototype final d'AS pour une éventuelle mise en circulation",
+    date: "13 juin, 2026",
+    text: "",
+    image: "/news/news1.jpg",
+    href: "/news",
+  },
+  {
+    title: "Construction de l'application APS pour le hackathon ID4Africa",
+    date: "20 mai, 2026",
+    text: "Une solution d'identité numérique conçue et présentée lors du hackathon ID4Africa.",
+    image: "/news/news1.jpg",
+    href: "/news",
+  },
+  {
+    title: "Refonte de la plateforme e-commerce d'un client local",
+    date: "02 avril, 2026",
+    text: "Migration complète, nouvelle UX et performances multipliées pour un commerçant camerounais.",
+    image: "/news/news1.jpg",
+    href: "/news",
+  },
+];
+
+function toHomePost(news: NewsRow): HomePost {
+  return {
+    title: news.title,
+    // « 13 juin, 2026 » comme le reste de l'accueil.
+    date: formatLongDate(news.published_at).replace(/ (\d{4})$/, ", $1"),
+    text: news.excerpt,
+    image: news.cover_url ?? "/news/news1.jpg",
+    href: `/news/${news.slug}`,
+  };
+}
+
+// Les news « à la une » sont relues au plus toutes les 60 s (et aussitôt après une publication).
+export const revalidate = 60;
+
+export default async function Home() {
+  const featured = await getFeaturedNews(3);
+  const homePosts = featured?.length ? featured.map(toHomePost) : fallbackPosts;
+  const [featuredPost, ...secondaryPosts] = homePosts;
+
   return (
     <div className="flex w-full flex-1 overflow-x-hidden flex-col bg-white text-ink">
       <div className="relative">
@@ -379,7 +427,7 @@ export default function Home() {
         <div className="relative mx-auto max-w-7xl">
           <SectionTitle eyebrow="Notre équipe" title="La Meilleure Équipe" />
           <div className="grid grid-cols-1 gap-10 sm:grid-cols-2 lg:grid-cols-4">
-            {teamMembers.slice(0, 8).map((member, i) => (
+            {teamMembers.slice(0, 4).map((member, i) => (
               <Reveal key={member.name} delay={(i % 4) * 110}>
                 <div className="group relative overflow-hidden rounded-3xl shadow-xl ring-1 ring-black/5 transition-all duration-500 hover:-translate-y-2 hover:shadow-2xl">
                   <div className="relative aspect-[4/5] w-full overflow-hidden">
@@ -441,7 +489,7 @@ export default function Home() {
         </div>
       </section>
 
-      {/* News / Projets */}
+      {/* News / Projets — news « à la une » du back-office */}
       <section id="news" className="bg-white">
         <div className="mx-auto max-w-7xl px-4 py-16 sm:px-6 sm:py-24 lg:px-8 lg:py-32">
           <SectionTitle eyebrow="Nouveauté" title="Projets Réalisés" />
@@ -450,7 +498,7 @@ export default function Home() {
             {/* <Reveal> */}
               <article className="group relative min-h-[28rem] overflow-hidden rounded-2xl shadow-xl sm:min-h-[32rem] lg:rounded-none">
                 <Image
-                  src="/news/news1.jpg"
+                  src={featuredPost.image}
                   alt="Projet vedette Afroza"
                   fill
                   sizes="(max-width: 1024px) 100vw, 50vw"
@@ -466,14 +514,15 @@ export default function Home() {
 
                   <div className="p-6 sm:p-10">
                     <span className="inline-block text-sm italic font-[400] tracking-wide sm:text-md">
-                      13 juin, 2026
+                      {featuredPost.date}
                     </span>
                     <h3 className="mt-5 text-2xl font-extrabold leading-snug sm:text-3xl lg:text-4xl">
-                    Mise sur pied du prototype final d&apos;AS pour une éventuelle
-                    mise en circulation
+                    {featuredPost.title}
                   </h3>
-                  <Button className="mt-4 rounded-full bg-brand px-6 py-5 text-sm font-semibold sm:px-8 sm:py-6 sm:text-md">
+                  <Button asChild className="mt-4 rounded-full bg-brand px-6 py-5 text-sm font-semibold sm:px-8 sm:py-6 sm:text-md">
+                    <Link href={featuredPost.href}>
                       Lire la suite <span>→</span>
+                    </Link>
                   </Button>
                   </div>
                 </div>
@@ -483,22 +532,9 @@ export default function Home() {
 
             {/* Secondary posts */}
             <div className="flex flex-col lg:flex-row gap-10">
-              {[
-                {
-                  id: 1,
-                  date: "20 mai, 2026",
-                  title: "Construction de l'application APS pour le hackathon ID4Africa",
-                  text: "Une solution d'identité numérique conçue et présentée lors du hackathon ID4Africa.",
-                },
-                {
-                  id: 2,
-                  date: "02 avril, 2026",
-                  title: "Refonte de la plateforme e-commerce d'un client local",
-                  text: "Migration complète, nouvelle UX et performances multipliées pour un commerçant camerounais.",
-                },
-              ].map((post, i) => (
+              {secondaryPosts.map((post) => (
                 // <Reveal key={post.title} delay={i * 150} className="flex-1">
-                  <article className="group flex flex-col justify-between h-full items-start p-8 gap-6 border bg-zinc-50  ring-1 ring-zinc-100 transition-all duration-300 hover:-translate-y-1 hover:bg-white hover:shadow-xl">
+                  <article key={post.href + post.title} className="group flex flex-col justify-between h-full items-start p-8 gap-6 border bg-zinc-50  ring-1 ring-zinc-100 transition-all duration-300 hover:-translate-y-1 hover:bg-white hover:shadow-xl">
                     <div className="">
                       <span className="nline-block py-1.5 text-md italic font-normal ">
                         News
@@ -517,12 +553,12 @@ export default function Home() {
                     </div>
 
                     <div className="flex justify-end w-full">
-                      <a
-                        href="/news"
+                      <Link
+                        href={post.href}
                         className=" text-base font-semibold text-brand transition-all hover:gap-2"
                       >
                         Lire la suite <span>→</span>
-                      </a>
+                      </Link>
                     </div>
                       
                   </article>

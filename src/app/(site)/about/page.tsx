@@ -92,7 +92,7 @@ export default function About() {
 
           <Reveal delay={140}>
             <p className="max-w-2xl text-base leading-8 text-white/80 sm:text-lg">
-              Afroza Editor accompagne les entreprises dans la conception, le
+              Afroza Editor, initialement conçu pour répondre aux besoins spécifiques du marché camerounais, accompagne les entreprises dans la conception, le
               développement et le déploiement de solutions web, mobiles et
               digitales. Notre travail relie stratégie, design, ingénierie et
               communication pour livrer des produits solides.
@@ -141,10 +141,7 @@ export default function About() {
               accessibles et bien pensées.
             </h2>
             <p className="mt-6 text-base leading-8  sm:text-lg">
-              Nous aidons les organisations à passer d'une idée floue à un
-              produit exploitable: une plateforme, une application, une identité
-              visuelle, une campagne ou un système interne qui simplifie le
-              travail quotidien.
+              Nous construisons des solutions qui simplifient le quotidien, captivent les utilisateurs et propulsent la croissance de nos partenaires.
             </p>
             <div className="mt-8 grid gap-4 sm:grid-cols-2">
               {[

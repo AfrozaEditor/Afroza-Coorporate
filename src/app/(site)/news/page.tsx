@@ -1,82 +1,33 @@
-"use client";
-
 import Image from "next/image";
-import BlogProjectRow from "@/components/common/blogFlow";
 
+import BlogProjectRow, { type BlogElement } from "@/components/common/blogFlow";
+import { legacyNews } from "@/data/news";
+import { formatDashedDate, htmlToText, truncate } from "@/lib/news/format";
+import { listPublishedNews } from "@/lib/news/queries";
+import type { NewsRow } from "@/lib/news/types";
 
+// Mise en cache 60 s ; la publication depuis le back-office rafraîchit la page aussitôt.
+export const revalidate = 60;
 
-const news = [
-  {
-    title: "Mise sur pied du prototype final d'AS pour une éventuelle mise en circulation",
-    date: "22-05-2026",
-    text:
-      "Console portable rétro, rétro-gaming, console nomade, jeux vidéo vintage… Depuis plus de 45 ans, les joueurs emportent leurs aventures partout avec eux. Des premiers écrans LCD des années 80 aux consoles portables ultra-puissantes d’aujourd’hui, le jeu vidéo nomade n’a cessé…",
-    images: ["/news/news1.jpg"],
-    isVideo: true,
-    // avatars: ["/avatar1.jpg", "/avatar2.jpg", "/avatar3.jpg"],:
-    overlay: "bg-brand/85",
-    link:'https://afrozamarketplace.app',
-    auteur: 'Fokou Sheryle'
-  },
-  {
-    title: "Varjo XR-4 Quel Impact pour les Développeurs ?",
-    date: "22-05-2026",
-    text:
-      `Pour les créateurs d'applications et les ingénieurs logiciels, le Varjo XR-4 change radicalement la donne :
-        Zéro Compromis Graphique : Les développeurs testent leurs environnements 3D en taille réelle avec des textures et des éclairages ultra-réalistes.
-        Optimisation par le Regard : Le suivi oculaire permet d'intégrer le rendu fovéal, une technique qui concentre la puissance de calcul là où l'utilisateur regarde.
-        Productivité Multi-Écrans : Il remplace un setup physique complexe par une infinité d'écrans virtuels haute résolution dans un espace de travail virtuel.
-        Face au manque d'infrastructures de pointe, le XR-4 permet de former les chirurgiens...`,
-    images: ["/news/news2.jpg"],
-    isVideo: true,
-    // avatars: ["/avatar1.jpg", "/avatar2.jpg", "/avatar3.jpg"],
-    overlay: "bg-ink/85",
-    auteur: 'Karel Ondo'
-  },
-  {
-    title: "Afroza Editor participant au Cursor Hackaton",
-    date: "22-05-2026",
-    text:
-      "Nous nous engageons à livrer vos projets dans les délais impartis, garantissant ainsi la satisfaction de nos clients.",
-    logo: "/news/projects/logo_aps.png",
-    images: ["/news/news5.jpg"],
-    isVideo: true,
-    // avatars: ["/avatar1.jpg", "/avatar2.jpg", "/avatar3.jpg"],
-    overlay: "bg-brand-dark/85",
-    auteur: 'Simo Menelik'
-  },
-  {
-    title: "Félicitation AFROZA EDITOR",
-    date: "22-05-2026",
-    text:
-      `Pour les créateurs d'applications et les ingénieurs logiciels, le Varjo XR-4 change radicalement la donne :
-        Zéro Compromis Graphique : Les développeurs testent leurs environnements 3D en taille réelle avec des textures et des éclairages ultra-réalistes.
-        Optimisation par le Regard : Le suivi oculaire permet d'intégrer le rendu fovéal, une technique qui concentre la puissance de calcul là où l'utilisateur regarde.
-        Productivité Multi-Écrans : Il remplace un setup physique complexe par une infinité d'écrans virtuels haute résolution dans un espace de travail virtuel.
-        Face au manque d'infrastructures de pointe, le XR-4 permet de former les chirurgiens...`,
-    logo: "/images/logo.png",
-    images: ["/news/news3.jpg","/news/news4.jpg"],
-    isVideo: true,
-    avatars: ["/avatar1.jpg", "/avatar2.jpg", "/avatar3.jpg"],
-    overlay: "bg-brand-dark/85",
-    auteur: 'Cheik Hassan Feze'
-  },
+function toBlogElement(news: NewsRow): BlogElement {
+    return {
+        title: news.title,
+        date: news.published_at ? formatDashedDate(news.published_at) : "",
+        text: news.excerpt || truncate(htmlToText(news.content), 400),
+        images: [news.cover_url ?? "/news/Banner.png"],
+        isVideo: news.content.includes("data-youtube-video"),
+        href: `/news/${news.slug}`,
+        auteur: news.author_name || undefined,
+        category: news.category,
+    };
+}
 
-  {
-    title: "Afroza Solidarity",
-    date: "22-05-2026",
-    text:
-      "Nous nous engageons à livrer vos projets dans les délais impartis, garantissant ainsi la satisfaction de nos clients.",
-    logo: "/news/projects/logo_as.png",
-    images: ["/news/news1.jpg"],
-    isVideo: true,
-    avatars: ["/avatar1.jpg", "/avatar2.jpg", "/avatar3.jpg"],
-    overlay: "bg-brand-dark/85",
-    auteur: 'Fokou Sheryle'
-  },
-];
+export default async function News() {
+    const published = await listPublishedNews();
+    const news: BlogElement[] = published
+        ? published.map(toBlogElement)
+        : legacyNews.map((item) => ({ ...item, href: `/news/${item.slug}` }));
 
-export default function News() {
     return(
         <>
             <div className="relative flex h-[100svh] min-h-[34rem] w-full items-center justify-center sm:min-h-[38rem]">

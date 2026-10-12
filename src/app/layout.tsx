@@ -1,8 +1,5 @@
 import type { Metadata } from "next";
 import "./styles/globals.css";
-import { cn } from "@/lib/utils";
-import Header from "@/components/layout/header";
-import Footer from "@/components/layout/footer";
 
 const siteUrl = "https://afroza-editor.tech"; // remplace par ton vrai domaine
 
@@ -93,10 +90,8 @@ export default function RootLayout({
   return (
     <html lang="fr" className="h-full antialiased overflow-x-hidden">
       <body className="min-h-full flex flex-col overflow-x-hidden">
-        <Header/>
         {children}
-        <Footer/>
-        </body>
+      </body>
     </html>
   );
 }
